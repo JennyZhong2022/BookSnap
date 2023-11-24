@@ -1,10 +1,10 @@
 import { useState } from 'react';
 
-import LoginForm from "../../components/LoginForm";
-import SignUpForm from "../../components/SignUpForm";
+import LoginForm from "../../components/LoginForm/LoginForm";
+import SignUpForm from "../../components/SignUpForm/SignUpForm";
 
 const AuthPage = ({setUser}) => {
-    const [showSignUp, setShowSignUp] = useState(true);
+    const [showSignUp, setShowSignUp] = useState(false);
     return (
         <div>
             {

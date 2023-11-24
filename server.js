@@ -1,6 +1,6 @@
 const express = require('express');
 const path = require('path');
-const favicon = require('serve-favicon');
+// const favicon = require('serve-favicon');
 const logger = require('morgan');
 
 require('dotenv').config();
@@ -15,7 +15,7 @@ app.use(express.json());
 // create-react-app has a "build" directory
 // vite uses the "dist" directory instead
 
-app.use(favicon(path.join(__dirname, 'dist', 'favicon.ico')));
+// app.use(favicon(path.join(__dirname, 'dist', 'favicon.ico')));
 app.use(express.static(path.join(__dirname, 'dist')));
 
 app.use(require('./config/checkToken'));

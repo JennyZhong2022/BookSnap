@@ -1,6 +1,8 @@
+import React from 'react'
+
 const BookList = () => {
   return (
-    <h1>Book List Coming Soon</h1>
+    <div>BookList</div>
   )
 }
 
