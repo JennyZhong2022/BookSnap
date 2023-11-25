@@ -1,9 +1,48 @@
-import BookSearch from "../../components/BookSearch/BookSearch"
+import BookSearch from '../../components/BookSearch/BookSearch';
+import BookDetail from '../../components/BookDetail/BookDetail';
+import BookList from '../../components/BookList/BookList';
+import { useState } from 'react';
 
 const MainPage = () => {
-  return (
-    <BookSearch/>
-  )
-}
+  const [booksData, setBooksData] = useState(null);
+  const [bookData, setBookData] = useState(null)
 
-export default MainPage
+  const fetchDataByTitle = async query => {
+    const rawData = await fetch(
+      `https://www.googleapis.com/books/v1/volumes?q=${query}&langRestrict=en&maxResults=10&key=AIzaSyAWBcqDbjLpDaKH_EdFHRfsqJtfgkYDnmw`
+    ).then(res => res.json());
+    const data = rawData.items;
+    setBooksData(data);
+    console.log(data);
+  };
+  const fetchDataByAuthors = async query => {
+    const rawData = await fetch(
+      `https://www.googleapis.com/books/v1/volumes?q=inauthor:${query}&langRestrict=en&maxResults=10&key=AIzaSyAWBcqDbjLpDaKH_EdFHRfsqJtfgkYDnmw`
+    ).then(res => res.json());
+    const data = rawData.items;
+    setBooksData(data);
+    console.log(data);
+  };
+  const handleDetailButton = (bookId) => {
+    const bookData = booksData?.filter((book) => book.id === bookId)[0]
+    setBookData(bookData)
+    console.log(bookData)
+  }
+
+  return (
+    <div>
+      <BookSearch
+        fetchDataByTitle={fetchDataByTitle}
+        fetchDataByAuthors={fetchDataByAuthors}
+        booksData={booksData}
+      />
+      <div style={{ display: 'flex' }}>
+        {!booksData && <div>No result</div>}
+        <BookList booksData={booksData} handleDetailButton={handleDetailButton}/>
+        <BookDetail bookData={bookData}/>
+      </div>
+    </div>
+  );
+};
+
+export default MainPage;
