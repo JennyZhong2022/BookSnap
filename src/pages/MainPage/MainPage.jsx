@@ -1,11 +1,13 @@
 import BookSearch from '../../components/BookSearch/BookSearch';
 import BookDetail from '../../components/BookDetail/BookDetail';
 import BookList from '../../components/BookList/BookList';
+import BookCategory from '../../components/BookCategory/BookCategory';
 import { useState } from 'react';
 
 const MainPage = () => {
   const [booksData, setBooksData] = useState(null);
-  const [bookData, setBookData] = useState(null)
+  const [bookData, setBookData] = useState(null);
+  const [filteredBooksData, setFilteredBooksData] = useState(null);
 
   const fetchDataByTitle = async query => {
     const rawData = await fetch(
@@ -29,16 +31,36 @@ const MainPage = () => {
     console.log(bookData)
   }
 
+  const handleCategoryChange = category => {
+    // Filter books based on the selected category
+    if (category === '') {
+      // If no category selected, show all books
+      setFilteredBooksData(booksData);
+      setBookData(null);
+    } else {
+      // Filter books based on the selected category
+      const filteredData = booksData.filter(book => {
+        return book.volumeInfo.categories?.includes(category);
+      });
+      setFilteredBooksData(filteredData);
+      setBookData(null);
+    }
+
+  };
+
   return (
     <div>
       <BookSearch
         fetchDataByTitle={fetchDataByTitle}
         fetchDataByAuthors={fetchDataByAuthors}
         booksData={booksData}
+        setBooksData={setBooksData}
+        setFilteredBooksData={setFilteredBooksData}
       />
       <div style={{ display: 'flex' }}>
         {!booksData && <div>No result</div>}
-        <BookList booksData={booksData} handleDetailButton={handleDetailButton}/>
+        <BookCategory onCategoryChange={handleCategoryChange} />
+        <BookList booksData={filteredBooksData || booksData} handleDetailButton={handleDetailButton}/>
         <BookDetail bookData={bookData}/>
       </div>
     </div>
