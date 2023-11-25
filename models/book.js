@@ -7,13 +7,20 @@ const bookSchema = new Schema({
     type: String,
     required: true
   },
-  author: {
+  authors: [{
     type: String,
     required: true
-  },
-  thumbnail: {
+  }],
+  image: {
     type: String,
     default: "https://placehold.co/80x100"
+  },
+  publishedDate: {
+    type: String,
+  },
+  selfLink: {
+    type: String,
+    required: true,
   },
   comment: {
     type: String,
