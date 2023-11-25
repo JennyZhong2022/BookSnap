@@ -1,11 +1,11 @@
-import React from 'react'
+
 import BookListItem from '../BookListItem/BookListItem'
 
-const bookList = ({booksData}) => {
+const bookList = ({booksData, handleDetailButton}) => {
   return (
     <div>
       <ul>
-      {booksData?.map(bookData => <li key={bookData.id}><BookListItem bookData={bookData}/></li>)}
+      {booksData?.map(bookData => <li key={bookData.id}><BookListItem bookData={bookData} handleDetailButton={handleDetailButton}/></li>)}
 
 
       </ul>
