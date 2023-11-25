@@ -24,7 +24,7 @@ const BookSearch = () => {
   return (
     <div style={{border: "1px solid black"}}>
       <BookSearchForm fetchDataByTitle={fetchDataByTitle} fetchDataByAuthors={fetchDataByAuthors}/>
-      <BookList booksData={booksData}/>
+      <BookList booksData={booksData} />
     </div>
   );
 };
