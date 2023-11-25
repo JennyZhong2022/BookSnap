@@ -1,6 +1,6 @@
 import React from 'react'
 
-export const BookSerch = () => {
+export const BookSearch = () => {
   return (
     <div>BookSerch</div>
   )
