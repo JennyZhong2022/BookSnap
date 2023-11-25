@@ -5,7 +5,7 @@ const bookList = ({booksData, handleDetailButton}) => {
   return (
     <div>
       <ul>
-      {booksData?.map(bookData => <li key={bookData.id}><BookListItem bookData={bookData} handleDetailButton={handleDetailButton}/></li>)}
+      {booksData?.map(bookData => <div key={bookData.id}><BookListItem bookData={bookData} handleDetailButton={handleDetailButton}/></div>)}
 
 
       </ul>
