@@ -1,6 +1,5 @@
-import { useState, useEffect } from 'react';
 import BookSearchForm from '../BookSearchForm/BookSearchForm';
-const BookSearch = ({fetchDataByAuthors, fetchDataByTitle, booksData}) => {
+const BookSearch = ({fetchDataByAuthors, fetchDataByTitle}) => {
   
   return (
     <div style={{ border: '1px solid black' }}>
