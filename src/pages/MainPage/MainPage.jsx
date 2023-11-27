@@ -3,6 +3,7 @@ import BookDetail from '../../components/BookDetail/BookDetail';
 import BookList from '../../components/BookList/BookList';
 import BookCategory from '../../components/BookCategory/BookCategory';
 import { useState } from 'react';
+import * as booksAPI from '../../utilities/books-api';
 
 const MainPage = () => {
   const [booksData, setBooksData] = useState(null);
@@ -45,8 +46,19 @@ const MainPage = () => {
       setFilteredBooksData(filteredData);
       setBookData(null);
     }
-
   };
+
+  const handleAddToMyBooksButton = async () => {
+    const bookInfo = bookData.volumeInfo
+    const book = await booksAPI.addToMyBooks({
+      title: bookInfo.title,
+      authors: bookInfo.authors,
+      image: bookInfo.imageLinks.thumbnail,
+      publishDate: bookInfo.publishDate,
+      selfLink: bookData.selfLink,
+      note: '',
+    })
+  }
 
   return (
     <div>
@@ -61,7 +73,7 @@ const MainPage = () => {
         {!booksData && <div>No result</div>}
         <BookCategory onCategoryChange={handleCategoryChange} />
         <BookList booksData={filteredBooksData || booksData} handleDetailButton={handleDetailButton}/>
-        <BookDetail bookData={bookData}/>
+        <BookDetail bookData={filteredBooksData || bookData} handleAddToMyBooksButton={handleAddToMyBooksButton} />
       </div>
     </div>
   );
