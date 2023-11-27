@@ -1,4 +1,3 @@
-import React from 'react';
 import MyBooksListItem from '../MyBooksListItem/MyBooksListItem';
 
 const MyBooksList = ({ myBooks }) => {

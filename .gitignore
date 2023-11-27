@@ -12,6 +12,8 @@ node_modules
 dist
 dist-ssr
 *.local
+seed.js
+seedData.js
 
 # Editor directories and files
 .vscode/*
