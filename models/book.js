@@ -5,11 +5,10 @@ const Schema = mongoose.Schema;
 const bookSchema = new Schema({
   title: {
     type: String,
-    required: true
   },
   authors: [{
     type: String,
-    required: true
+    default: ''
   }],
   image: {
     type: String,
@@ -20,12 +19,11 @@ const bookSchema = new Schema({
   },
   selfLink: {
     type: String,
-    required: true,
   },
-  comment: {
+  note: {
     type: String,
-  }
-})
+  },
+}, {timestamps: true})
 
 
 
