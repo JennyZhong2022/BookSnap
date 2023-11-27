@@ -49,8 +49,8 @@ const MainPage = () => {
   };
 
   const handleAddToMyBooksButton = async () => {
-    const bookInfo = bookData.volumeInfo;
-    const data = {
+    const bookInfo = bookData.volumeInfo
+    const book = await booksAPI.addToMyBooks({
       title: bookInfo.title,
       authors: bookInfo.authors,
       image: bookInfo.imageLinks.thumbnail,
