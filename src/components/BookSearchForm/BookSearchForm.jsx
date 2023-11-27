@@ -1,10 +1,11 @@
 import { useState } from 'react';
-const BookSearchForm = ({ fetchDataByTitle, fetchDataByAuthors }) => {
-  const [titleInput, setTitleInput] = useState('');
+const BookSearchForm = ({ fetchDataByTitle, fetchDataByAuthors ,setBookTitle,bookTitle,setStartIndex}) => {
+ 
   const [authorsInput, setAuthorsInput] = useState('')
 
   const handleTitleSearch = () => {
-    fetchDataByTitle(titleInput)
+    fetchDataByTitle(bookTitle)
+    setStartIndex(0)
   };
 
   const handleAuthorsSearch = () => {
@@ -13,8 +14,8 @@ const BookSearchForm = ({ fetchDataByTitle, fetchDataByAuthors }) => {
   return (
     <div style={{border: "1px solid black"}}>
     <div>
-      <p>{titleInput}</p>
-      <input type="text" onChange={e => setTitleInput(e.target.value)} />
+      <p>{bookTitle}</p>
+      <input type="text" onChange={e => setBookTitle(e.target.value)} />
       <button onClick={handleTitleSearch}>Search by Title</button>
     </div>
     <div>
