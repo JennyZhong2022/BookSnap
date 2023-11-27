@@ -1,14 +1,15 @@
 import React from 'react';
 
-const MyBooksListItem = ({ book }) => {
+const MyBooksListItem = ({ book, onDeleteBook }) => {
+  const handleDelete = () => {
+    onDeleteBook(book._id);
+  };
+
   return (
-    <ul>
-      <div style={{border:'1px solid blue', borderRadius: '5px'}}>
-        <img src={book.image} alt={book.title} />
-        <h3>{book.title}</h3>
-        <p>Authors: {book.authors.join(', ')}</p>
-      </div>
-    </ul>
+    <div>
+      <p>{book.title}</p>
+      <button onClick={handleDelete}>Delete</button>
+    </div>
   );
 };
 
