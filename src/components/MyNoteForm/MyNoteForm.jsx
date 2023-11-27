@@ -30,6 +30,7 @@ const MyNoteForm = ({ handleAddNote, book, handleDeleteNote, haveNote, handleWri
               onChange={e => handleInput(e)}
             />
             <button>Add Note</button>
+            <button onClick={handleWriteNote}>Cancel</button>
           </form>
         </div>
       )}
