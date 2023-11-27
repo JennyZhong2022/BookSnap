@@ -1,26 +1,13 @@
 import { useState } from 'react';
-import Grid from '@mui/material/Grid'; // Import Grid if not already imported
+import Grid from '@mui/material/Grid'; 
 import Link from '@mui/material/Link';
-import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import LoginForm from "../../components/LoginForm/LoginForm";
 import SignUpForm from "../../components/SignUpForm/SignUpForm";
 import Container from '@mui/material/Container';
+import Footer from '../../components/Footer/footer';
 
-function Copyright() {
-    return (
-      <Typography variant="body2" color="text.secondary" align="center" >
-       
-        <p color="inherit" >
-        {'Copyright © '}
-          Book Snap{' '}
-          {new Date().getFullYear()}
-        {'.'}
-        </p>
-        
-      </Typography>
-    );
-  }
+
 
 const AuthPage = ({ setUser }) => {
     const [showSignUp, setShowSignUp] = useState(false);
@@ -45,7 +32,7 @@ const AuthPage = ({ setUser }) => {
                     </Link>
                 </Grid>
             </Grid>
-            <Copyright sx={{ mt: 5 }} />
+            <Footer sx={{ mt: 5 }} />
             </Box>
             </Container>
     );
