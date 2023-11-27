@@ -9,6 +9,8 @@ const MainPage = () => {
   const [booksData, setBooksData] = useState(null);
   const [bookData, setBookData] = useState(null);
   const [filteredBooksData, setFilteredBooksData] = useState(null);
+ 
+
 
   const fetchDataByTitle = async query => {
     const rawData = await fetch(
@@ -18,6 +20,8 @@ const MainPage = () => {
     setBooksData(data);
     console.log(data);
   };
+
+
 
   const fetchDataByAuthors = async query => {
     const rawData = await fetch(
@@ -64,6 +68,8 @@ const MainPage = () => {
     alert(`Add ${bookInfo.title} to MyBooks`)
   }
 
+
+
   return (
     <div>
       <BookSearch
@@ -76,7 +82,8 @@ const MainPage = () => {
       <div style={{ display: 'flex' }}>
         {!booksData && <div>No result</div>}
         <BookCategory onCategoryChange={handleCategoryChange} />
-        <BookList booksData={filteredBooksData || booksData} handleDetailButton={handleDetailButton}/>
+        <BookList booksData={filteredBooksData || booksData} handleDetailButton={handleDetailButton} />
+       
         <BookDetail bookData={filteredBooksData || bookData} handleAddToMyBooksButton={handleAddToMyBooksButton} />
       </div>
     </div>
