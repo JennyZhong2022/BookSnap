@@ -15,9 +15,8 @@ const index = async (req, res) => {
 const create = async (req, res) => {
   try{
     const mybook = await Book.create(req.body)
-    const user = await User.findById(req.user._id)
-    user.mybooks.push(mybook._id)
-    user.save()
+    await User.findByIdAndUpdate(req.user._id, { $push: {mybooks: mybook._id} });
+    res.json(mybook);
   } catch(err) {
     res.status(400).json(err);
 }
