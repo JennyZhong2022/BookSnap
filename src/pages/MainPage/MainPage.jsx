@@ -57,7 +57,7 @@ const MainPage = () => {
       authors: bookInfo.authors,
       image: bookInfo.imageLinks.thumbnail,
       publishDate: bookInfo.publishDate,
-      selfLink: bookData.selfLink,
+      bookId: bookData.id,
       note: '',
     }
     await booksAPI.addToMyBooks(data)

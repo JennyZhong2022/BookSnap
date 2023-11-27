@@ -17,7 +17,7 @@ const bookSchema = new Schema({
   publishedDate: {
     type: String,
   },
-  selfLink: {
+  bookId: {
     type: String,
   },
   note: {
