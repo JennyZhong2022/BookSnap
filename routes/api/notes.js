@@ -3,8 +3,8 @@ const router = express.Router();
 const noteController = require('../../controllers/api/notes')
 
 // These routes are "prefixed" with /api/books
-router.put('/edit', noteController.edit)
+router.put('/:id/edit', noteController.edit)
 router.post('/new', noteController.create)
-router.delete('/:id', noteController.delete)
+router.put('/:id', noteController.delete)
 
 module.exports = router;
