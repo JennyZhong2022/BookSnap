@@ -23,7 +23,7 @@ const create = async (req, res) => {
 
 const deleteBook = async (req, res) => {
   try{
-    await Book.findByIdAndDelete(req.body._id)
+    await Book.findByIdAndDelete(req.params.id)
 
   } catch(err) {
     res.status(400).json(err)
