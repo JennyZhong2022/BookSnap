@@ -8,16 +8,16 @@ const data = require('./seedData');
 
 const seedDB = async () => {
   await Book.deleteMany({});
-  for (let i = 0; i < data.length; i++) {
-    const book = new Book({
-      title: data[i].volumeInfo.title,
-      authors: data[i].volumeInfo.authors,
-      image: data[i].volumeInfo.imageLinks.thumbnail,
-      publishedDate: data[i].volumeInfo.publishedDate,
-      selfLink: data[i].selfLink,
-    });
-    await book.save();
-  }
+  // for (let i = 0; i < data.length; i++) {
+  //   const book = new Book({
+  //     title: data[i].volumeInfo.title,
+  //     authors: data[i].volumeInfo.authors,
+  //     image: data[i].volumeInfo.imageLinks.thumbnail,
+  //     publishedDate: data[i].volumeInfo.publishedDate,
+  //     selfLink: data[i].selfLink,
+  //   });
+  //   await book.save();
+  // }
 };
 
 const addToMyBooks = async () => {
@@ -30,5 +30,5 @@ const populateBooks = async () => {
   console.log(result)
 }
 // addToMyBooks()
-// seedDB();
+seedDB();
 // populateBooks()
