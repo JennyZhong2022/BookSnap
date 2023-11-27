@@ -1,14 +1,11 @@
 import MyBooksListItem from '../MyBooksListItem/MyBooksListItem';
 
-const MyBooksList = ({ myBooks }) => {
+const MyBooksList = ({ myBooks, onDeleteBook }) => {
   return (
     <div>
-      <h2>My Books</h2>
-      <ul>
-        {myBooks.map((book) => (
-          <MyBooksListItem key={book._id} book={book} />
-        ))}
-      </ul>
+      {myBooks.map((book) => (
+        <MyBooksListItem key={book._id} book={book} onDeleteBook={onDeleteBook} />
+      ))}
     </div>
   );
 };
