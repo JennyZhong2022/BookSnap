@@ -15,7 +15,9 @@ const index = async (req, res) => {
 const create = async (req, res) => {
   try{
     const mybook = await Book.create(req.body)
-    await User.findByIdAndUpdate(req.user._id, {mybooks: mybook._id})
+    const user = await User.findById(req.user._id)
+    user.mybooks.push(mybook._id)
+    user.save()
   } catch(err) {
     res.status(400).json(err);
 }
@@ -23,7 +25,7 @@ const create = async (req, res) => {
 
 const deleteBook = async (req, res) => {
   try{
-    await Book.findByIdAndDelete(req.body._id)
+    await Book.findByIdAndDelete(req.params.id)
 
   } catch(err) {
     res.status(400).json(err)

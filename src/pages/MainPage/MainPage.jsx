@@ -50,14 +50,16 @@ const MainPage = () => {
 
   const handleAddToMyBooksButton = async () => {
     const bookInfo = bookData.volumeInfo
-    const book = await booksAPI.addToMyBooks({
+    const data = {
       title: bookInfo.title,
       authors: bookInfo.authors,
       image: bookInfo.imageLinks.thumbnail,
       publishDate: bookInfo.publishDate,
       selfLink: bookData.selfLink,
       note: '',
-    })
+    }
+    await booksAPI.addToMyBooks(data)
+    alert(`Add ${bookInfo.title} to MyBooks`)
   }
 
   return (
