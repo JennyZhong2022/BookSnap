@@ -18,6 +18,7 @@ const MainPage = () => {
     setBooksData(data);
     console.log(data);
   };
+
   const fetchDataByAuthors = async query => {
     const rawData = await fetch(
       `https://www.googleapis.com/books/v1/volumes?q=inauthor:${query}&langRestrict=en&maxResults=10&key=AIzaSyAWBcqDbjLpDaKH_EdFHRfsqJtfgkYDnmw`
@@ -26,6 +27,7 @@ const MainPage = () => {
     setBooksData(data);
     console.log(data);
   };
+  
   const handleDetailButton = (bookId) => {
     const bookData = booksData?.filter((book) => book.id === bookId)[0]
     setBookData(bookData)

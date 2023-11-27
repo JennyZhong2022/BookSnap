@@ -1,9 +1,23 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react';
+import MyBooksList from '../../components/MyBooksList/MyBooksList';
+import * as booksAPI from '../../utilities/books-api';
 
 const MyBooksPage = () => {
-  return (
-    <div>MyBooksPage</div>
-  )
-}
+  const [myBooks, setMyBooks] = useState([]);
 
-export default MyBooksPage
+  useEffect(() => {
+    const getMyBooks = async () => {
+        const books = await booksAPI.getMyBooksList();
+        setMyBooks(books);
+    };
+    getMyBooks();
+  }, []);
+
+  return (
+    <div>
+      <MyBooksList myBooks={myBooks} />
+    </div>
+  );
+};
+
+export default MyBooksPage;
