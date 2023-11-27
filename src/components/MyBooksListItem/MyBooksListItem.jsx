@@ -2,13 +2,14 @@ import React from 'react';
 
 const MyBooksListItem = ({ book }) => {
   return (
-    <div>
-        <img src={volumeData.imageLinks.thumbnail} alt={volumeData.title} />
-        <h2>{volumeData.title}</h2>
-        {volumeData.authors?.map(e => <h3>By {e}</h3>)} <h3>Published: {volumeData.publishedDate}</h3>
-        <div style={{width: "400px"}}>{volumeData.description}</div>
-    </div>
+    <ul>
+      <div style={{border:'1px solid blue', borderRadius: '5px'}}>
+        <img src={book.image} alt={book.title} />
+        <h3>{book.title}</h3>
+        <p>Authors: {book.authors.join(', ')}</p>
+      </div>
+    </ul>
   );
 };
 
-export default MyBooksListItem
+export default MyBooksListItem;
