@@ -7,8 +7,12 @@ const MyBooksPage = () => {
 
   useEffect(() => {
     const getMyBooks = async () => {
+      try {
         const books = await booksAPI.getMyBooksList();
         setMyBooks(books);
+      } catch (error) {
+        console.error('Error getting my books:', error.message);
+      }
     };
     getMyBooks();
   }, []);
