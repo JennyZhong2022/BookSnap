@@ -1,6 +1,20 @@
 import { useState } from 'react';
 import * as usersService from '../../utilities/users-service';
 
+import Avatar from '@mui/material/Avatar';
+import Button from '@mui/material/Button';
+import CssBaseline from '@mui/material/CssBaseline';
+import TextField from '@mui/material/TextField';
+import Grid from '@mui/material/Grid';
+import Box from '@mui/material/Box';
+import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
+import Typography from '@mui/material/Typography';
+import Container from '@mui/material/Container';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+
+ // set the theme of style.
+ const defaultTheme = createTheme();
+
 export default function LoginForm({ setUser }) {
   const [credentials, setCredentials] = useState({
     email: '',
@@ -28,18 +42,79 @@ export default function LoginForm({ setUser }) {
     }
   }
 
+  
+
   return (
-    <div>
-      <div className="form-container">
-        <form autoComplete="off" onSubmit={handleSubmit}>
-          <label>Email</label>
-          <input type="text" name="email" value={credentials.email} onChange={handleChange} required />
-          <label>Password</label>
-          <input type="password" name="password" value={credentials.password} onChange={handleChange} required />
-          <button type="submit">LOG IN</button>
-        </form>
-      </div>
-      <p className="error-message">&nbsp;{error}</p>
-    </div>
-  );
-}
+<ThemeProvider theme={defaultTheme}>
+ <Container component="main" maxWidth="xs">
+   <CssBaseline />
+   <Box
+     sx={{
+       marginTop: 8,
+       display: 'flex',
+       flexDirection: 'column',
+       alignItems: 'center',
+     }}
+   >
+      <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
+        {/* need login icon ?*/}
+       <LockOutlinedIcon />
+     </Avatar>
+     <Typography component="h1" variant="h5">
+       Login
+     </Typography>
+     <Box component="form" autoComplete="off" onSubmit={handleSubmit} sx={{ mt: 3 }}>
+       <Grid container spacing={2}>
+         <Grid item xs={12} sm={12}>
+            <TextField
+              type='email'
+              name="email"
+              value={credentials.email}
+              onChange={handleChange}
+             autoComplete="email"
+             required
+             fullWidth
+             id="Email"
+             label="Email"
+             autoFocus
+           />
+         </Grid>
+         
+         <Grid item xs={12}>
+             <TextField
+              value={credentials.password}
+              onChange={handleChange}
+             required
+             fullWidth
+             name="password"
+             label="Password"
+             type="password"
+             id="password"
+             autoComplete="password"
+           />
+           </Grid>
+        
+          <Grid item xs={12}>
+              <Typography sx={{ color: 'warning.main' }}>&nbsp;{error}</Typography>
+          </Grid>
+              
+
+       </Grid >
+         <Button
+         type="submit"
+         fullWidth
+         variant="contained"
+         sx={{ mt: 3, mb: 2 }}
+       >
+         Login
+       </Button>
+       
+     </Box>
+   </Box>
+
+ </Container>
+</ThemeProvider>
+)}
+
+
+
