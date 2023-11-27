@@ -48,16 +48,18 @@ const MainPage = () => {
     }
   };
 
-  const handleAddToMyBooksButton = async (bookId) => {
-    const bookInfo = bookData.volumeInfo
-    const book = await booksAPI.addToMyBooks({
+  const handleAddToMyBooksButton = async () => {
+    const bookInfo = bookData.volumeInfo;
+    const data = {
       title: bookInfo.title,
       authors: bookInfo.authors,
-      // image: bookInfo.imageLink.thumbnail,
+      image: bookInfo.imageLinks.thumbnail,
       publishDate: bookInfo.publishDate,
-      selfLink: bookInfo.selfLink,
+      selfLink: bookData.selfLink,
       note: '',
-    })
+    }
+    await booksAPI.addToMyBooks(data)
+    console.log(data)
   }
 
   return (
