@@ -65,7 +65,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
      <Typography component="h1" variant="h5">
        Sign up
      </Typography>
-     <Box component="form" utoComplete="off" onSubmit={handleSubmit} sx={{ mt: 3 }}>
+     <Box component="form" autoComplete="off" onSubmit={handleSubmit} sx={{ mt: 3 }}>
        <Grid container spacing={2}>
          <Grid item xs={12} sm={12}>
              <TextField
@@ -82,6 +82,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
          </Grid>
          <Grid item xs={12}>
              <TextField
+             type='email'
              value={formData.email}
              onChange={handleChange}
              required
@@ -119,7 +120,9 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
              autoComplete="new-password"
            />
          </Grid>
-
+         <Grid item xs={12}>
+              <Typography sx={{ color: 'warning.main' }} >&nbsp;{formData.error}</Typography>
+          </Grid>
         
        </Grid>
          <Button
