@@ -13,15 +13,23 @@ const create = async (req, res) => {
 const editNote = async (req, res) => {
   try {
     const note = await Book.findByIdAndUpdate(req.body._id, {note: req.body.note})
-    console.log(note)
-
+    res.json(note)
   } catch(err) {
-    res.status()
+    res.status(400).json(err)
+  }
+}
+
+const deleteNote = async (req, res) => {
+  try {
+    await Book.findByIdAndDelete(req.params._id)
+  } catch(err) {
+    res.status(400).json(err)
   }
 }
 
 
 module.exports = {
   create,
-  editNote
+  edit: editNote,
+  delete: deleteNote
 }

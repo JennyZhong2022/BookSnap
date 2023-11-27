@@ -1,7 +1,5 @@
 const express = require('express');
 const router = express.Router();
-const booksController = require('../../controllers/api/books');
-
 const bookController = require('../../controllers/api/books')
 
 // These routes are "prefixed" with /api/books
