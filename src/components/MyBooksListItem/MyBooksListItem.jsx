@@ -31,13 +31,17 @@ const handleWriteNote = () => {
 };
 
   return (
-    <div style={{ border: '1px solid blue', borderRadius: '5px' }}>
+    <div style={{ border: '1px solid blue', borderRadius: '5px', margin: '1em', padding: '1em', display: 'flex'}}>
       <img src={book.image} alt={book.title} />
+      <div style={{margin: '1em'}}>
+
       <h3>{book.title}</h3>
       <p>Authors: {book.authors.join(', ')}</p>
       <Button onClick={handleDelete} style={{ backgroundColor: '#113946', color: 'white' }} variant="outlined" startIcon={<DeleteIcon /> } >Delete</Button>
       <p>{bookNote}</p>
       <MyNoteForm handleAddNote={handleAddNote} book={book} handleDeleteNote={handleDeleteNote} haveNote={haveNote} handleWriteNote={handleWriteNote} addNoteButtonClicked={addNoteButtonClicked}/>
+
+      </div>
     </div>
   );
 };

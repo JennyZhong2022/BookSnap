@@ -3,7 +3,7 @@ import Grid from '@mui/material/Unstable_Grid2';
 
 const MyBooksList = ({ myBooks, onDeleteBook }) => {
   return (
-    <div>
+    <div style={{margin: '1em auto', width: '50%'}}>
       {myBooks.map((book) => (
         <MyBooksListItem key={book._id} book={book} onDeleteBook={onDeleteBook} />
       ))}
