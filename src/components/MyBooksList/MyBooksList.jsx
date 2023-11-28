@@ -1,9 +1,10 @@
 import MyBooksListItem from '../MyBooksListItem/MyBooksListItem';
-import Grid from '@mui/material/Unstable_Grid2';
+import './MyBooksList.css'
 
 const MyBooksList = ({ myBooks, onDeleteBook }) => {
   return (
-    <div style={{margin: '1em auto', width: '50%'}}>
+
+    <div className='books-container'>
       {myBooks.map((book) => (
         <MyBooksListItem key={book._id} book={book} onDeleteBook={onDeleteBook} />
       ))}

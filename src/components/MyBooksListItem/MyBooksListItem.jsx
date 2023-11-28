@@ -3,6 +3,7 @@ import * as noteAPI from '../../utilities/note-api';
 import { useState } from 'react';
 import Button from '@mui/material/Button';
 import DeleteIcon from '@mui/icons-material/Delete';
+import './MyBooksListItem.css'
 
 const MyBooksListItem = ({ book, onDeleteBook }) => {
   const [bookNote, setBookNote] = useState(book.note);
@@ -33,15 +34,21 @@ const handleWriteNote = () => {
 
 
   return (
-    <div style={{ border: '1px solid blue', borderRadius: '5px', margin: '1em', padding: '1em', display: 'flex'}}>
+    <div className='book-container'>
       <img src={book.image} alt={book.title} />
-      <div style={{margin: '1em'}}>
+      <div style={{width: '100%'}}>
+      <div className='book-content'>
 
-      <h3>{book.title}</h3>
-      <p>Authors: {book.authors.join(', ')}</p>
-      <Button onClick={handleDelete} style={{ backgroundColor: '#113946', color: 'white' }} variant="outlined" startIcon={<DeleteIcon /> } >Delete</Button>
-      <p>{bookNote}</p>
+      <h3>{book.title} <span className='authors-name'>By {book.authors.join(', ')}</span> </h3>
+      <div>{bookNote}</div>
       <MyNoteForm handleAddNote={handleAddNote} book={book} handleDeleteNote={handleDeleteNote} haveNote={haveNote} handleWriteNote={handleWriteNote} addNoteButtonClicked={addNoteButtonClicked} />
+      
+
+      </div>
+      <div className='delete-button'>
+      <Button onClick={handleDelete} style={{ backgroundColor: '#113946', color: 'white' }} variant="outlined" size='small' startIcon={<DeleteIcon /> } >Delete</Button>
+      </div>
+
 
       </div>
     </div>

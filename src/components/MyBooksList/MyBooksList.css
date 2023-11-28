@@ -1,0 +1,23 @@
+.books-container {
+  margin: auto;
+  width: 70%;
+  height: 84vh;
+  overflow-y: auto;
+}
+
+.authors-name {
+  font-weight: 300;
+  font-size: small;
+  display: inline-block;
+}
+
+.book-content {
+  margin-left: 1em;
+  padding: 0;
+  width: 100%;
+}
+
+.delete-button {
+  margin-top: 5em;
+  margin-left: 27em;
+}
