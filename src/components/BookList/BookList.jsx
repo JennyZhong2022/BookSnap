@@ -1,12 +1,13 @@
 
 import BookListItem from '../BookListItem/BookListItem'
+import './BookList.css'
 
-const bookList = ({booksData, handleDetailButton,handlePreviousPage,handleNextPage}) => {
+const bookList = ({booksData, handleDetailButton}) => {
   return (
     <div>
       <ul>
       {booksData?.map((bookData) => (
-        <div key={bookData.id}>
+        <div key={bookData.id} className='search-item'>
             <BookListItem 
               bookData={bookData} 
               handleDetailButton={handleDetailButton} />
@@ -15,9 +16,7 @@ const bookList = ({booksData, handleDetailButton,handlePreviousPage,handleNextPa
 
 
       </ul>
-      <button onClick={handlePreviousPage}>Previous Page</button>
-     <span>1</span>
-        <button onClick={handleNextPage}>Next Page</button>
+     
     </div>
   )
 }

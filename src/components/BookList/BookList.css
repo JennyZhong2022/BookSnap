@@ -1,0 +1,12 @@
+.search-item {
+  border: 1px solid #113946;
+  border-radius: 5px;
+  margin: 1rem;
+  padding: 1rem;
+  min-height: 20vh;
+  display: flex;
+}
+
+.search-item:hover {
+  border: 2px solid #113946;
+}

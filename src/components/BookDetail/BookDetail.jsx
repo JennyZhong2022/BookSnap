@@ -1,27 +1,34 @@
 import { v4 as uuid } from 'uuid';
 const BookDetail = ({ bookData, handleAddToMyBooksButton }) => {
-  const style = { border: '1px solid green' };
   const volumeData = bookData?.volumeInfo;
 
   return (
-    <div style={style}>
+    <>
       {bookData ? (
-        <div>
-          <img src={volumeData.imageLinks.thumbnail} alt={volumeData.title} />
-          <h2>{volumeData.title}</h2>
+        <div style={{ width: '400px' }}>
+          <img
+            src={volumeData.imageLinks.thumbnail}
+            alt={volumeData.title}
+            style={{ height: '20em' }}
+          />
+          <h2>
+            {volumeData.title}{' '}
+            <button onClick={handleAddToMyBooksButton}>Add to My Books</button>
+          </h2>
           {volumeData.authors?.map(e => (
             <h3 key={uuid()}>By {e}</h3>
           ))}{' '}
-          <h3>Published: {volumeData.publishedDate}</h3>
-          <div style={{ width: '400px' }}>{volumeData.description}</div>
-          <button onClick={handleAddToMyBooksButton}>Add to My Books</button>
+          <h5>Published: {volumeData.publishedDate}</h5>
+          <div style={{ width: '100%', height: '50%' }}>
+            {volumeData.description}
+          </div>
         </div>
       ) : (
         <div>
           <h2>BookDetail</h2>
         </div>
       )}
-    </div>
+    </>
   );
 };
 
