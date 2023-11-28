@@ -6,6 +6,7 @@ import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import * as userService from '../../utilities/users-service';
 import './NavBar.css';
+import AutoStoriesRoundedIcon from '@mui/icons-material/AutoStoriesRounded';
 
 export default function NavBar({ user, setUser }) {
   const _handleLogOut = () => {
@@ -19,32 +20,32 @@ export default function NavBar({ user, setUser }) {
         main: '#113946',
       },
       secondary: {
-        main: '#ead7bb;',
+        main: '#ead7bb',
       },
     },
   });
+
   return (
     <ThemeProvider theme={defaultTheme}>
       <Box sx={{ flexGrow: 1 }}>
         <AppBar position="static">
           {user && (
             <Toolbar>
-              <Link to="/" className="link">
+              <Link to="/" className="link" style={{ textDecoration: 'none' }}>
                 <Typography
                   variant="h6"
                   component="div"
-                  sx={{ flexGrow: 1 }}
+                  sx={{ flexGrow: 1, marginRight: 4 }}
                   color="white"
                 >
-                  BookSnap
+                  📚 BookSnap
                 </Typography>
               </Link>
-              {'   '}
-              <Link to="/mybooks">
+              <Link to="/mybooks" className="link" style={{ textDecoration: 'none' }}>
                 <Typography
                   variant="h6"
                   component="div"
-                  sx={{ flexGrow: 1 }}
+                  sx={{ flexGrow: 1, marginRight: 4 }}
                   color="white"
                 >
                   MyBooks
@@ -53,16 +54,16 @@ export default function NavBar({ user, setUser }) {
               <Typography
                 variant="h6"
                 component="div"
-                sx={{ flexGrow: 1 }}
+                sx={{ flexGrow: 1, marginRight: 4 }}
                 color="lightBlue"
               >
                 Welcome, {user.name}
               </Typography>
-              <Link to="/" onClick={_handleLogOut}>
+              <Link to="/" onClick={_handleLogOut} className="link" style={{ textDecoration: 'none' }}>
                 <Typography
                   variant="h6"
                   component="div"
-                  sx={{ flexGrow: 1 }}
+                  sx={{ flexGrow: 1, marginRight: 4 }}
                   color="white"
                 >
                   Log-out
@@ -73,21 +74,21 @@ export default function NavBar({ user, setUser }) {
 
           {!user && (
             <Toolbar>
-              <Link to="/">
+              <Link to="/" className="link" style={{ textDecoration: 'none' }}>
                 <Typography
                   variant="h6"
                   component="div"
-                  sx={{ flexGrow: 1 }}
+                  sx={{ flexGrow: 1, marginRight: 4 }}
                   color="white"
                 >
                   Home
                 </Typography>
               </Link>
-              <Link to="/api/user">
+              <Link to="/api/user" className="link" style={{ textDecoration: 'none' }}>
                 <Typography
                   variant="h6"
                   component="div"
-                  sx={{ flexGrow: 1 }}
+                  sx={{ flexGrow: 1, marginRight: 4 }}
                   color="white"
                 >
                   Login
