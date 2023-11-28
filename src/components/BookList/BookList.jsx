@@ -1,7 +1,7 @@
 
 import BookListItem from '../BookListItem/BookListItem'
 
-const bookList = ({booksData, handleDetailButton}) => {
+const bookList = ({booksData, handleDetailButton,handlePreviousPage,handleNextPage}) => {
   return (
     <div>
       <ul>
@@ -15,6 +15,9 @@ const bookList = ({booksData, handleDetailButton}) => {
 
 
       </ul>
+      <button onClick={handlePreviousPage}>Previous Page</button>
+     <span>1</span>
+        <button onClick={handleNextPage}>Next Page</button>
     </div>
   )
 }
