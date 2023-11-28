@@ -5,7 +5,7 @@ import { useState } from 'react';
 const MyBooksListItem = ({ book, onDeleteBook }) => {
   const [bookNote, setBookNote] = useState(book.note);
   const [haveNote, setHaveNote] = useState(book.note ? true : false)
-  const [addNoteButtonClicked, setAddNoteButtonClicked] = useState(false);
+  const [addNoteButtonClicked, setAddNoteButtonClicked] = useState(book.note ? true : false);
   const handleDelete = () => {
     onDeleteBook(book._id);
   };
@@ -16,6 +16,7 @@ const MyBooksListItem = ({ book, onDeleteBook }) => {
     setBookNote(input)
     setHaveNote(true)
   };
+
 
   const handleDeleteNote = async (bookId) => {
     await noteAPI.deleteNote(bookId)
@@ -28,6 +29,7 @@ const handleWriteNote = () => {
   setAddNoteButtonClicked(!addNoteButtonClicked);
 };
 
+
   return (
     <div style={{ border: '1px solid blue', borderRadius: '5px', margin: '1em', padding: '1em', display: 'flex'}}>
       <img src={book.image} alt={book.title} />
@@ -37,7 +39,7 @@ const handleWriteNote = () => {
       <p>Authors: {book.authors.join(', ')}</p>
       <button onClick={handleDelete}>Delete</button>
       <p>{bookNote}</p>
-      <MyNoteForm handleAddNote={handleAddNote} book={book} handleDeleteNote={handleDeleteNote} haveNote={haveNote} handleWriteNote={handleWriteNote} addNoteButtonClicked={addNoteButtonClicked}/>
+      <MyNoteForm handleAddNote={handleAddNote} book={book} handleDeleteNote={handleDeleteNote} haveNote={haveNote} handleWriteNote={handleWriteNote} addNoteButtonClicked={addNoteButtonClicked} />
 
       </div>
     </div>

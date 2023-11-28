@@ -1,18 +1,23 @@
 import { useState } from 'react';
 
-const MyNoteForm = ({ handleAddNote, book, handleDeleteNote, haveNote, handleWriteNote, addNoteButtonClicked }) => {
+const MyNoteForm = ({
+  handleAddNote,
+  book,
+  handleDeleteNote,
+  haveNote,
+  handleWriteNote,
+  addNoteButtonClicked,
+}) => {
   const [noteInput, setNoteInput] = useState('');
-  
+
   const handleInput = e => {
     setNoteInput(e.target.value);
   };
-  
 
   return (
     <>
       {haveNote && (
         <div>
-          <button>Edit</button>
           <button onClick={() => handleDeleteNote(book._id)}>Delete</button>
         </div>
       )}

@@ -1,5 +1,4 @@
 import Typography from '@mui/material/Typography';
-import Box from '@mui/material/Box';
 
 
 const Footer = () => {
@@ -9,7 +8,7 @@ const Footer = () => {
       {'Copyright © '}
         Book Snap{' '}
         {new Date().getFullYear()}
-      {'.'}
+      {''}
     </Typography>
     </div>
   );

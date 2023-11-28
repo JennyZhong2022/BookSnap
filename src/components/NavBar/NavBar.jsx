@@ -36,7 +36,7 @@ export default function NavBar({ user, setUser }) {
                   sx={{ flexGrow: 1 }}
                   color="white"
                 >
-                  Home
+                  BookSnap
                 </Typography>
               </Link>
               {'   '}
