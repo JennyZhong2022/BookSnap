@@ -1,0 +1,21 @@
+.serch-container {
+  margin: 0;
+  padding: 0;
+}
+.search-list-container, .book-detail-container {
+  overflow-y: auto;
+  height: 73vh;
+}
+
+.search-list-container {
+  display: inline-block;
+  padding: 0 0.5em;
+  margin-right: 1em;
+  width: 65%;
+}
+
+.book-detail-container {
+  display: inline-block;
+  padding: 1em;
+  width: 30%;
+}

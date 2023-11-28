@@ -1,11 +1,18 @@
-
-const BookListItem = ({bookData, handleDetailButton}) => {
+const BookListItem = ({ bookData, handleDetailButton }) => {
   return (
-    <div style={{border:'1px solid blue', borderRadius: '5px'}}>
-    <img src={bookData.volumeInfo.imageLinks?.smallThumbnail} alt="" />{bookData.volumeInfo.title} by {bookData.volumeInfo.authors} <button onClick={()=>handleDetailButton(bookData.id)}>See more</button>
-    </div>
-  )
-}
+    <>
+      <img src={bookData.volumeInfo.imageLinks?.thumbnail} alt="" />
+      <div style={{ marginLeft: '1em' }}>
+        <h3>{bookData.volumeInfo.title}</h3>{' '}
+        <span>
+          by {bookData.volumeInfo.authors || 'No data'}{' '}
+          <button onClick={() => handleDetailButton(bookData.id)}>
+            See more
+          </button>
+        </span>
+      </div>
+    </>
+  );
+};
 
-
-export default BookListItem
+export default BookListItem;
