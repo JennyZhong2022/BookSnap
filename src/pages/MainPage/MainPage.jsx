@@ -15,11 +15,13 @@ const MainPage = () => {
 
 
   // useCallback to match useEffect 
-  // useCallback is used to memoize the fetchDataByTitle function.
-  // useEffect depends on fetchDataByTitle. Without useCallback, fetchDataByTitle would be re-created on every render, leading to useEffect being triggered more often than necessary.
+  // useCallback is used to memoize the fetchData function.
+  // useEffect depends on fetchData. Without useCallback, fetchData would be re-created on every render, leading to useEffect being triggered more often than necessary.
   const fetchData = useCallback(async (query, searchType) => {
     let url = `https://www.googleapis.com/books/v1/volumes?langRestrict=en&maxResults=10&startIndex=${startIndex}&key=AIzaSyAmb3QsxaJ7qcOG-i9UerqFnesBKqZkEYo`;
     if (searchType === 'author') {
+
+// encodeURIComponent is used to encode a part of a URL, typically the query string, to ensure that it is properly formatted and does not contain any characters that could break the URL.
       url += `&q=inauthor:${encodeURIComponent(query)}`;
     } else {
       url += `&q=${encodeURIComponent(query)}`;
