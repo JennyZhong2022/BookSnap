@@ -17,7 +17,7 @@ const MainPage = () => {
   // useEffect depends on fetchDataByTitle. Without useCallback, fetchDataByTitle would be re-created on every render, leading to useEffect being triggered more often than necessary.
   const fetchDataByTitle =useCallback( async (bookTitle) => {
     const rawData = await fetch(
-      `https://www.googleapis.com/books/v1/volumes?q=${bookTitle}&printType=books&langRestrict=en&maxResults=10&startIndex=${startIndex}&key=AIzaSyAnDkdiBjWz6guAt0D-RwEr85PlXbI2G18`
+      `https://www.googleapis.com/books/v1/volumes?q=${bookTitle}&langRestrict=en&maxResults=10&startIndex=${startIndex}&key=AIzaSyAWBcqDbjLpDaKH_EdFHRfsqJtfgkYDnmw`
     ).then(res => res.json());
     const data = rawData.items;
     setBooksData(data);
@@ -36,7 +36,7 @@ const MainPage = () => {
 
   const fetchDataByAuthors = async query => {
     const rawData = await fetch(
-      `https://www.googleapis.com/books/v1/volumes?q=inauthor:${query}&langRestrict=en&maxResults=10&key=AIzaSyAWBcqDbjLpDaKH_EdFHRfsqJtfgkYDnmw`
+      `https://www.googleapis.com/books/v1/volumes?q=inauthor:${query}&langRestrict=en&maxResults=10&key=AIzaSyAnDkdiBjWz6guAt0D-RwEr85PlXbI2G18`
     ).then(res => res.json());
     const data = rawData.items;
     setBooksData(data);
