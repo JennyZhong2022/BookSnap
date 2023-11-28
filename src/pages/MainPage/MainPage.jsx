@@ -10,40 +10,42 @@ const MainPage = () => {
   const [bookData, setBookData] = useState(null);
   const [filteredBooksData, setFilteredBooksData] = useState(null);
   const [query, setQuery] = useState('');
-  const [startIndex,setStartIndex]=useState(0)
+  const [startIndex, setStartIndex] = useState(0)
+  const [selectedSearchType, setSelectedSearchType] = useState('title');
 
 
   // useCallback to match useEffect 
   // useCallback is used to memoize the fetchDataByTitle function.
   // useEffect depends on fetchDataByTitle. Without useCallback, fetchDataByTitle would be re-created on every render, leading to useEffect being triggered more often than necessary.
-  const fetchDataByTitle =useCallback( async (query) => {
-    const rawData = await fetch(
-      `https://www.googleapis.com/books/v1/volumes?q=${query}&langRestrict=en&maxResults=10&startIndex=${startIndex}&key=AIzaSyBqq5ZfaPrKD16V-faE8RS83kjbJ0vBcpM`
-    ).then(res => res.json());
-    const data = rawData.items;
-    setBooksData(data);
-    console.log(data);
-  },[startIndex])
+  const fetchData = useCallback(async (query, searchType) => {
+    let url = `https://www.googleapis.com/books/v1/volumes?langRestrict=en&maxResults=10&startIndex=${startIndex}&key=AIzaSyAmb3QsxaJ7qcOG-i9UerqFnesBKqZkEYo`;
+    if (searchType === 'author') {
+      url += `&q=inauthor:${encodeURIComponent(query)}`;
+    } else {
+      url += `&q=${encodeURIComponent(query)}`;
+    }
+  
+    try {
+      const rawData = await fetch(url).then(res => res.json());
+      const data = rawData.items;
+      setBooksData(data);
+      console.log(data);
+    } catch (error) {
+      console.error('Error fetching data:', error);
+      // Handle error
+    }
+  }, [startIndex]);
 
   useEffect(() => {
     if (query) {
-      fetchDataByTitle(); 
+      fetchData(query, selectedSearchType);
     }
-    // when the dependencies changes will trigger the fetchDataByTitle functions
-  }, [query, startIndex, fetchDataByTitle]);
+  }, [startIndex, fetchData]);
   
   
-
-  const fetchDataByAuthors = async query => {
-    const rawData = await fetch(
-      `https://www.googleapis.com/books/v1/volumes?q=inauthor:${query}&langRestrict=en&maxResults=10&key=AIzaSyBqq5ZfaPrKD16V-faE8RS83kjbJ0vBcpM`
-    ).then(res => res.json());
-    const data = rawData.items;
-    setBooksData(data);
-    console.log(data);
-};
-
+  // ???? what should I do with this?
   const handleSearch = (query, searchFunction) => {
+   
     if (query.trim() === '') {
       // If the query is empty, reset the data
       setBooksData(null);
@@ -104,21 +106,23 @@ const MainPage = () => {
     <div>
       <BookSearch
         handleSearch={handleSearch}
-        fetchDataByTitle={fetchDataByTitle}
-        fetchDataByAuthors={fetchDataByAuthors}
         booksData={booksData}
         setBooksData={setBooksData}
         setFilteredBooksData={setFilteredBooksData}
         setStartIndex={setStartIndex}
         query={query}
         setQuery={setQuery}
+        fetchData={fetchData}
+        selectedSearchType={selectedSearchType} 
+      setSelectedSearchType={setSelectedSearchType}
       />
       <div style={{ display: 'flex' }}>
         {!booksData && <div>No result</div>}
         <BookCategory onCategoryChange={handleCategoryChange} />
-        <BookList booksData={filteredBooksData || booksData} handleDetailButton={handleDetailButton} />
-        <button onClick={handlePreviousPage}>Previous Page</button>
-        <button onClick={handleNextPage}>Next Page</button>
+        <BookList booksData={filteredBooksData || booksData} handleDetailButton={handleDetailButton}
+          handlePreviousPage={handlePreviousPage}
+          handleNextPage={handleNextPage}/>
+        
         <BookDetail bookData={filteredBooksData || bookData} handleAddToMyBooksButton={handleAddToMyBooksButton} />
       </div>
     </div>

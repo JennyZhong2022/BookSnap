@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+
 
 
 const categories = [
@@ -23,29 +23,28 @@ const languages = [
   'German',
 ];
 
-const BookSearchForm = ({ fetchDataByTitle, fetchDataByAuthors, handleSearch, setStartIndex, query, setQuery }) => {
+const BookSearchForm = ({  setStartIndex, query, setQuery ,fetchData, selectedSearchType,setSelectedSearchType,}) => {
 
-  const [selectedSearchType, setSelectedSearchType] = useState('title');
+  
 
 
   const handleChange = (event) => {
-    if (selectedSearchType === 'title') {
-      const newQuery = event.target.value;
-      setQuery(newQuery);
-      handleSearch(newQuery, fetchDataByTitle);
-    } else {
-      const newQuery = event.target.value;
-      setQuery(newQuery);
-      handleSearch(newQuery, fetchDataByAuthors);
-    }
+    setQuery(event.target.value);
+  }
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    fetchData(query, selectedSearchType);
+    setStartIndex(0)
   }
 
   const handleSearchTypeChange = (event) => {
-    const newSearchType = event.target.value;
-    setSelectedSearchType(newSearchType);
-    handleSearch(query, newSearchType);
-    setStartIndex(0)
-  };
+    setSelectedSearchType(event.target.value);
+    setStartIndex(0);
+  }
+  
+
+  
   
   return (
     <div className="BookSearchForm" style={{border: "1px solid black"}}>
@@ -74,8 +73,8 @@ const BookSearchForm = ({ fetchDataByTitle, fetchDataByAuthors, handleSearch, se
         onChange={handleChange}
         placeholder={`Search by ${selectedSearchType === 'title' ? 'Title' : 'Author'}`}
       />
-
-      <select onChange={handleSearchTypeChange}>
+      <button onClick={handleSubmit}>Search</button>
+      <select onChange={handleSearchTypeChange} value={selectedSearchType}>
         <option value="title">Title</option>
         <option value="author">Author</option>
       </select>
