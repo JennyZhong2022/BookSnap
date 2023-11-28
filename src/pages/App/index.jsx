@@ -7,14 +7,17 @@ import NavBar from '../../components/NavBar/NavBar';
 import './App.css';
 import MainPage from '../MainPage/MainPage';
 import MyBooksPage from '../MyBooksPage/MyBooksPage';
+import Footer from '../../components/Footer/Footer';
+
 
 export default function App() {
   const [user, setUser] = useState(getUser());
   return (
+    <div>
+      <NavBar user={user} setUser={setUser} />
     <main className="App">
       {
         <>
-          <NavBar user={user} setUser={setUser} />
           <Routes>
             <Route path="/" element={<MainPage />} />
             {user && (
@@ -31,8 +34,9 @@ export default function App() {
             )}
           </Routes>
         </>
-        // <AuthPage setUser={ setUser }/>
       }
     </main>
+      <Footer/>
+    </div>
   );
 }

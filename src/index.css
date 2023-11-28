@@ -1,27 +1,28 @@
-
 :root {
-  --white: #FFFFFF;
-  --tan-1: #FFF2D8;
-  --tan-2: #EAD7BB;
-  --tan-3: #BCA37F;
+  --white: #ffffff;
+  --tan-1: #fff2d8;
+  --tan-2: #ead7bb;
+  --tan-3: #bca37f;
   --tan-4: #113946;
   --text-light: #968c84;
   --text-dark: #615954;
+  
 }
 
-*, *:before, *:after {
+*,
+*:before,
+*:after {
   box-sizing: border-box;
 }
 
 body {
   margin: 0;
-  font-family: monospace, -apple-system, BlinkMacSystemFont, 'Space Mono', 'Segoe UI', 'Roboto', 'Oxygen',
-  'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-  sans-serif;
+  font-family: monospace, -apple-system, BlinkMacSystemFont, 'Space Mono',
+    'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans',
+    'Droid Sans', 'Helvetica Neue', sans-serif !important;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: var(--tan-1);
-  padding: 2vmin;
+  background-color: var(--tan-1) !important;
   height: 100vh;
 }
 
@@ -31,10 +32,11 @@ code {
 }
 
 #root {
-  height: 100%;
+  position: relative;
+  min-height: 100vh;
 }
 
 button {
-  background-color: var(--tan-4);
+  background-color: var(--tan-3);
   color: var(--white);
 }

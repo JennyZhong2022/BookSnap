@@ -5,7 +5,7 @@ import Box from '@mui/material/Box';
 import LoginForm from "../../components/LoginForm/LoginForm";
 import SignUpForm from "../../components/SignUpForm/SignUpForm";
 import Container from '@mui/material/Container';
-import Footer from '../../components/Footer/footer';
+import Footer from '../../components/Footer/Footer';
 
 
 
