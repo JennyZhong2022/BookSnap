@@ -4,14 +4,14 @@ import Box from '@mui/material/Box';
 
 const Footer = () => {
   return (
-    <Box  sx={{ mt: 3 }}>
-    <Typography variant="body2" color="text.secondary" align="center" component="footer">
-    
-        BookSnap  {'©'} by Annabelle Jenny Phuong Yonghee {' '}
+    <div className='footer'>
+    <Typography variant="body2" color="white" align="center" component="footer">
+      {'Copyright © '}
+        Book Snap{' '}
         {new Date().getFullYear()}
       {'.'}
-      </Typography>
-    </Box>
+    </Typography>
+    </div>
   );
 }
 
