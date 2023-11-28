@@ -16,7 +16,7 @@ const NavBar = ({ user, setUser }) => {
           <span>Welcome, {user.name}</span>
           <Link to="/" onClick={_handleLogOut}>
           Log-out
-        </Link>
+          </Link>
         </span>
       )}
 

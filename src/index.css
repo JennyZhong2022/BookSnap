@@ -37,4 +37,7 @@ code {
 button {
   background-color: var(--tan-4);
   color: var(--white);
+  font-family: monospace, -apple-system, BlinkMacSystemFont, 'Space Mono', 'Segoe UI', 'Roboto', 'Oxygen',
+  'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  sans-serif;
 }
