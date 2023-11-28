@@ -23,7 +23,7 @@ const languages = [
   'German',
 ];
 
-const BookSearchForm = ({  setStartIndex, query, setQuery ,fetchData, selectedSearchType,setSelectedSearchType,}) => {
+const BookSearchForm = ({  setStartIndex, query, setQuery ,fetchData, selectedSearchType,setSelectedSearchType,setCurrentPage}) => {
 
   
 
@@ -36,11 +36,11 @@ const BookSearchForm = ({  setStartIndex, query, setQuery ,fetchData, selectedSe
     event.preventDefault();
     fetchData(query, selectedSearchType);
     setStartIndex(0)
+    setCurrentPage(1)
   }
 
   const handleSearchTypeChange = (event) => {
     setSelectedSearchType(event.target.value);
-    setStartIndex(0);
   }
   
 

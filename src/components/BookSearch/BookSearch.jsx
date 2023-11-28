@@ -1,7 +1,7 @@
 import BookSearchForm from '../BookSearchForm/BookSearchForm';
 
 
-const BookSearch = ({fetchData, selectedSearchType,setSelectedSearchType,handleSearch, categories, handleCategoryChanges,setStartIndex, query, setQuery}) => {
+const BookSearch = ({fetchData, selectedSearchType,setSelectedSearchType,handleSearch, categories, handleCategoryChanges,setStartIndex, query, setQuery,setCurrentPage}) => {
   
   return (
     <div style={{ border: '1px solid black' }}>
@@ -15,7 +15,8 @@ const BookSearch = ({fetchData, selectedSearchType,setSelectedSearchType,handleS
         setQuery={setQuery}
         fetchData={fetchData}
         selectedSearchType={selectedSearchType} 
-      setSelectedSearchType={setSelectedSearchType}
+        setSelectedSearchType={setSelectedSearchType}
+        setCurrentPage={setCurrentPage}
       />
     </div>
   );
