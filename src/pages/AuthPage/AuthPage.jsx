@@ -4,6 +4,7 @@ import Link from '@mui/material/Link';
 import Box from '@mui/material/Box';
 import LoginForm from "../../components/LoginForm/LoginForm";
 import SignUpForm from "../../components/SignUpForm/SignUpForm";
+import BookFooter from '../../components/BookFooter/BookFooter';
 import Container from '@mui/material/Container';
 import Footer from '../../components/Footer/Footer';
 
@@ -32,7 +33,7 @@ const AuthPage = ({ setUser }) => {
                     </Link>
                 </Grid>
             </Grid>
-            <Footer sx={{ mt: 5 }} />
+            <BookFooter sx={{ mt: 5 }} />
             </Box>
             </Container>
     );
