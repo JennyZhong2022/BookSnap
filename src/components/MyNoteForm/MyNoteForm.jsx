@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import TextField from '@mui/material/TextField';
 
 const MyNoteForm = ({
   handleAddNote,
@@ -23,18 +24,21 @@ const MyNoteForm = ({
       )}
       {!haveNote && !addNoteButtonClicked && (
         <div>
-          <button onClick={handleWriteNote}>Write a note</button>
+          <button onClick={handleWriteNote}>Add Your Note</button>
         </div>
       )}
       {!haveNote && addNoteButtonClicked && (
         <div>
-          <form onSubmit={e => handleAddNote(e, noteInput)}>
-            <input
-              type="text"
+          <form onSubmit={(e) => handleAddNote(e, noteInput)}>
+            <TextField
+              id="outlined-multiline-static"
+              label="Your Note"
+              multiline
+              rows={4}
               value={noteInput}
-              onChange={e => handleInput(e)}
+              onChange={(e) => handleInput(e)}
             />
-            <button>Add Note</button>
+            <button>Submit</button>
             <button onClick={handleWriteNote}>Cancel</button>
           </form>
         </div>

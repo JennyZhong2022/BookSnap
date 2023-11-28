@@ -1,6 +1,8 @@
 import MyNoteForm from '../MyNoteForm/MyNoteForm';
 import * as noteAPI from '../../utilities/note-api';
 import { useState } from 'react';
+import Button from '@mui/material/Button';
+import DeleteIcon from '@mui/icons-material/Delete';
 
 const MyBooksListItem = ({ book, onDeleteBook }) => {
   const [bookNote, setBookNote] = useState(book.note);
@@ -37,7 +39,7 @@ const handleWriteNote = () => {
 
       <h3>{book.title}</h3>
       <p>Authors: {book.authors.join(', ')}</p>
-      <button onClick={handleDelete}>Delete</button>
+      <Button onClick={handleDelete} style={{ backgroundColor: '#113946', color: 'white' }} variant="outlined" startIcon={<DeleteIcon /> } >Delete</Button>
       <p>{bookNote}</p>
       <MyNoteForm handleAddNote={handleAddNote} book={book} handleDeleteNote={handleDeleteNote} haveNote={haveNote} handleWriteNote={handleWriteNote} addNoteButtonClicked={addNoteButtonClicked} />
 
