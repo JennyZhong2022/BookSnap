@@ -1,11 +1,12 @@
 const categories = [
   'Art',
-  'Biography',
+  'Horror',
   'Computers',
   'Fiction',
   'History',
   'Medical',
-  'Poetry',
+  'Fantasy',
+  'Romance'
 ];
 
 const BookCategory = ({ onCategoryChange }) => {
