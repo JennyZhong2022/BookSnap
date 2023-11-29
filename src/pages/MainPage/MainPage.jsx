@@ -12,6 +12,7 @@ const MainPage = () => {
   const [filteredBooksData, setFilteredBooksData] = useState(null);
   const [query, setQuery] = useState('');
   const [startIndex, setStartIndex] = useState(0);
+  const [currentPage,setCurrentPage]=useState(1)
   const [selectedSearchType, setSelectedSearchType] = useState('title');
 
   // useCallback to match useEffect
@@ -91,15 +92,35 @@ const MainPage = () => {
     alert(`Add ${bookInfo.title} to MyBooks`);
   };
 
+  // const handleNextPage = () => {
+  //   setStartIndex(prev => prev + 10);
+  //   // if(startIndex>190) set condition ???
+  // };
+  // // console.log(startIndex);
+  // const handlePreviousPage = () => {
+  //   setStartIndex(prev => prev - 10);
+  //   // if(startIndex<=10) button disable or set alert condition??
+  // };
+
+
+  const maxPages=10
+
   const handleNextPage = () => {
-    setStartIndex(prev => prev + 10);
-    // if(startIndex>190) set condition ???
-  };
-  // console.log(startIndex);
+    if (currentPage < maxPages) {
+      setStartIndex(prev => prev + 10)
+      setCurrentPage(prev => prev + 1)
+    }}
+  console.log(startIndex);
+
+
   const handlePreviousPage = () => {
-    setStartIndex(prev => prev - 10);
-    // if(startIndex<=10) button disable or set alert condition??
-  };
+    if(currentPage>1){
+    setStartIndex(prev => prev - 10)
+    setCurrentPage(prev=>prev-1)
+  }}
+  
+
+
 
   return (
     <div>
@@ -114,12 +135,10 @@ const MainPage = () => {
         fetchData={fetchData}
         selectedSearchType={selectedSearchType}
         setSelectedSearchType={setSelectedSearchType}
+        setCurrentPage={setCurrentPage}
       />
       <BookCategory onCategoryChange={handleCategoryChange} />
       <div style={{ display: 'inline-block' }}>
-        <button onClick={handlePreviousPage}>Previous Page</button>
-        <span>1</span>
-        <button onClick={handleNextPage}>Next Page</button>
       </div>
       <div className='search-container'>
         {!booksData && <div>No result</div>}
@@ -127,6 +146,12 @@ const MainPage = () => {
           <BookList
             booksData={filteredBooksData || booksData}
             handleDetailButton={handleDetailButton}
+            handlePreviousPage={handlePreviousPage}
+          handleNextPage={handleNextPage}
+          setStartIndex={setStartIndex}
+          currentPage={currentPage}
+          setCurrentPage={setCurrentPage}
+          maxPages={maxPages}
           />
         </div>
         <div className='book-detail-container'>
