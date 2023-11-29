@@ -1,12 +1,9 @@
 import BookListItem from '../BookListItem/BookListItem';
 import './BookList.css';
 
-const bookList = ({
-  booksData,
-  handleDetailButton,
-  
-}) => {
-  
+const bookList = ({ booksData, handleDetailButton, groupedData}) => {
+ 
+
 
   return (
     <div style={{ margin: '100px' }}>
@@ -17,7 +14,7 @@ const bookList = ({
       </div> */}
 
       <ul>
-        {booksData?.map(bookData => (
+        {groupedData?.map(bookData => (
           <div key={bookData.id} className="search-item">
             <BookListItem
               bookData={bookData}

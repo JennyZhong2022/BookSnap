@@ -23,8 +23,14 @@ const MainPage = () => {
   // const [categories, setCategories] = useState([]);
   // const [selectedCategory, setSelectedCategory] = useState('');
 
+  const [page, setPage]=useState(0)
+  const [groupedData, setGroupedData] = useState(null)
 
-
+  const handleClick = () => {
+    setPage( (page+1)% 4)
+      const slicedDate = booksData.slice(page*10, page*10 + 10)
+      setGroupedData([...slicedDate])
+    }
 
   useEffect(() => {
     // Initial fetch to get all books and categories
@@ -33,9 +39,11 @@ const MainPage = () => {
       const randomLetter = alphabet[Math. floor(Math. random() * alphabet. length)]; 
       console.log(randomLetter)
       const rawData = await fetch(
-        `https://www.googleapis.com/books/v1/volumes?q=${randomLetter}&langRestrict=en&maxResults=10&startIndex=${startIndex}&key=${APIKey}`
+        `https://www.googleapis.com/books/v1/volumes?q=${randomLetter}&langRestrict=en&maxResults=40&startIndex=${startIndex}&key=${APIKey}`
       ).then((res) => res.json());
       const data = rawData.items || [];
+      const slicedData = data.slice(page*10, page*10 + 10)
+      setGroupedData([...slicedData])
       setBooksData(data);
         console.log(data)
         };
@@ -49,7 +57,7 @@ const MainPage = () => {
   // useEffect depends on fetchData. Without useCallback, fetchData would be re-created on every render, leading to useEffect being triggered more often than necessary.
   const fetchData = useCallback(
     async (query, searchType) => {
-      let url = `https://www.googleapis.com/books/v1/volumes?langRestrict=en&maxResults=10&startIndex=${startIndex}&key=${APIKey}`;
+      let url = `https://www.googleapis.com/books/v1/volumes?langRestrict=en&maxResults=40&startIndex=${startIndex}&key=${APIKey}`;
       if (searchType === 'author') {
         // encodeURIComponent is used to encode a part of a URL, typically the query string, to ensure that it is properly formatted and does not contain any characters that could break the URL.
         url += `&q=inauthor:${encodeURIComponent(query)}`;
@@ -131,7 +139,6 @@ const MainPage = () => {
       setCurrentPage(prev => prev + 1);
     }
   };
-  console.log(startIndex);
 
   const handlePreviousPage = () => {
     if (currentPage > 1) {
@@ -142,6 +149,7 @@ const MainPage = () => {
 
   return (
     <div>
+      <button onClick={handleClick}>click</button>
       <BookSearch
         // handleSearch={handleSearch}
         booksData={booksData}
@@ -170,6 +178,7 @@ const MainPage = () => {
         <BookList
           booksData={filteredBooksData || booksData}
           handleDetailButton={handleDetailButton}
+          groupedData={groupedData}
          
         />
       </div>
