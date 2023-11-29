@@ -1,6 +1,4 @@
 
-
-
 const categories = [
   'All',
   'Art',
@@ -12,21 +10,10 @@ const categories = [
   'Poetry',
 ];
 
-const languages = [
-  'All',
-  'English',
-  'Korean',
-  'French',
-  'Italian',
-  'Spanish',
-  'Chinese',
-  'German',
-];
 
-const BookSearchForm = ({  setStartIndex, query, setQuery ,fetchData, selectedSearchType,setSelectedSearchType,setCurrentPage}) => {
+const BookSearchForm = ({  setStartIndex, query, setQuery ,fetchData, selectedSearchType,setSelectedSearchType,setCurrentPage }) => {
 
-  
-
+ // const [categories, setCategories] = useState();
 
   const handleChange = (event) => {
     setQuery(event.target.value);
@@ -43,29 +30,8 @@ const BookSearchForm = ({  setStartIndex, query, setQuery ,fetchData, selectedSe
     setSelectedSearchType(event.target.value);
   }
   
-
-  
-  
   return (
     <div className="BookSearchForm" style={{border: "1px solid black"}}>
- 
-      <div>
-        <select name="Category">
-          <option value="">Categories</option>
-          {categories.map(category => (
-          <option key={category} value={category}>{category}</option>
-        ))}
-        </select>
-      </div>
-
-      <div>
-        <select name="Language">
-          <option value="">Languages</option>
-          {languages.map(language => (
-          <option key={language} value={language}>{language}</option>
-        ))}
-        </select>
-      </div>
 
       <input 
         type="text" 
@@ -78,8 +44,6 @@ const BookSearchForm = ({  setStartIndex, query, setQuery ,fetchData, selectedSe
         <option value="title">Title</option>
         <option value="author">Author</option>
       </select>
-
-
     </div>
   );
 };
