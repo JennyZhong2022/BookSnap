@@ -5,6 +5,7 @@ import BookCategory from '../../components/BookCategory/BookCategory';
 import { useCallback, useEffect, useState } from 'react';
 import * as booksAPI from '../../utilities/books-api';
 import './MainPage.css';
+import BookPageController from '../../components/BookPageController/BookPageController';
 
 // why this one is not working!
 const APIKey = import.meta.env.VITE_BOOK_API_KEY;
@@ -53,14 +54,14 @@ const MainPage = () => {
   }, [startIndex, fetchData]);
 
   // ???? what should I do with this handleSearch function?
-  const handleSearch = (query, searchFunction) => {
-    if (query.trim() === '') {
-      // If the query is empty, reset the data
-      setBooksData(null);
-      return;
-    }
-    searchFunction(query);
-  };
+  // const handleSearch = (query, searchFunction) => {
+  //   if (query.trim() === '') {
+  //     // If the query is empty, reset the data
+  //     setBooksData(null);
+  //     return;
+  //   }
+  //   searchFunction(query);
+  // };
 
   const handleDetailButton = bookId => {
     const bookData = booksData?.filter(book => book.id === bookId)[0];
@@ -115,10 +116,12 @@ const MainPage = () => {
     }
   };
 
+  
+
   return (
     <div>
       <BookSearch
-        handleSearch={handleSearch}
+        // handleSearch={handleSearch}
         booksData={booksData}
         setBooksData={setBooksData}
         setFilteredBooksData={setFilteredBooksData}
@@ -133,17 +136,18 @@ const MainPage = () => {
       <div style={{ display: 'flex' }}>
         {!booksData && <div>No result</div>}
         <BookCategory onCategoryChange={handleCategoryChange} />
+        {booksData && <BookPageController
+           handlePreviousPage={handlePreviousPage}
+           handleNextPage={handleNextPage}
+           setStartIndex={setStartIndex}
+           currentPage={currentPage}
+           setCurrentPage={setCurrentPage}
+           maxPages={maxPages}/>} 
         <div className="search-list-container">
-
         <BookList
           booksData={filteredBooksData || booksData}
           handleDetailButton={handleDetailButton}
-          handlePreviousPage={handlePreviousPage}
-          handleNextPage={handleNextPage}
-          setStartIndex={setStartIndex}
-          currentPage={currentPage}
-          setCurrentPage={setCurrentPage}
-          maxPages={maxPages}
+         
         />
       </div>
       <div className="book-detail-container">
