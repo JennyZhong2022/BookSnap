@@ -13,21 +13,8 @@ const bookList = ({ booksData, handleDetailButton, handlePreviousPage, handleNex
 
 
   return (
-    <div>
-      <ul>
-      {booksData?.map((bookData) => (
-        <div key={bookData.id} className='search-item'>
-            <BookListItem 
-              bookData={bookData} 
-            handleDetailButton={handleDetailButton}
-            />
-        </div>
-      ))}
-
-
-      </ul>
-
-      <div>
+    <div style={{margin:'100px'}}>
+<div>
         {booksData &&
           <div>
       <button
@@ -48,6 +35,21 @@ const bookList = ({ booksData, handleDetailButton, handlePreviousPage, handleNex
           </div>
         }
       </div>
+
+      <ul>
+      {booksData?.map((bookData) => (
+        <div key={bookData.id} className='search-item'>
+            <BookListItem 
+              bookData={bookData} 
+            handleDetailButton={handleDetailButton}
+            />
+        </div>
+      ))}
+
+
+      </ul>
+
+      
       
     </div>
   )
