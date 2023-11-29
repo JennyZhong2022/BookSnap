@@ -6,10 +6,10 @@ const categories = [
   'History',
   'Medical',
   'Fantasy',
-  'Romance'
+  'Romance',
 ];
 
-const BookCategory = ({ onCategoryChange }) => {
+const BookCategory = ({ onCategoryChange, isNewSearch }) => {
   const handleCategoryChange = event => {
     const category = event.target.value;
     onCategoryChange(category);
@@ -18,9 +18,13 @@ const BookCategory = ({ onCategoryChange }) => {
   return (
     <div>
       <select onChange={handleCategoryChange}>
-        <option value="">All Categories</option>
+        <option value="" selected={isNewSearch && 'selected'}>
+          All Categories
+        </option>
         {categories.map(category => (
-          <option key={category} value={category}>{category}</option>
+          <option key={category} value={category}>
+            {category}
+          </option>
         ))}
       </select>
     </div>

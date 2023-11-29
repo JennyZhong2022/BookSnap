@@ -5,9 +5,7 @@ import BookCategory from '../../components/BookCategory/BookCategory';
 import { useCallback, useEffect, useState } from 'react';
 import * as booksAPI from '../../utilities/books-api';
 import './MainPage.css';
-import BookPageController from '../../components/BookPageController/BookPageController';
 
-// why this one is not working!
 const APIKey = import.meta.env.VITE_BOOK_API_KEY;
 
 // const APIKey ='AIzaSyAmb3QsxaJ7qcOG-i9UerqFnesBKqZkEYo';
@@ -17,82 +15,54 @@ const MainPage = () => {
   const [bookData, setBookData] = useState(null);
   const [filteredBooksData, setFilteredBooksData] = useState(null);
   const [query, setQuery] = useState('');
-  const [startIndex, setStartIndex] = useState(0);
-  const [currentPage, setCurrentPage] = useState(1);
   const [selectedSearchType, setSelectedSearchType] = useState('title');
-  // const [categories, setCategories] = useState([]);
-  // const [selectedCategory, setSelectedCategory] = useState('');
+  const [isNewSearch, setIsNewSearch] = useState(false);
 
-  const [page, setPage]=useState(0)
-  const [groupedData, setGroupedData] = useState(null)
-
-  const handleClick = () => {
-    setPage( (page+1)% 4)
-      const slicedDate = booksData.slice(page*10, page*10 + 10)
-      setGroupedData([...slicedDate])
-    }
-
+  // Initial fetch to get all books and categories
   useEffect(() => {
-    // Initial fetch to get all books and categories
     const fetchAllBooks = async () => {
       const alphabet = 'abcdefghijklmnopqrstuvwxyz';
-      const randomLetter = alphabet[Math. floor(Math. random() * alphabet. length)]; 
-      console.log(randomLetter)
+      const randomLetter =
+        alphabet[Math.floor(Math.random() * alphabet.length)];
+      console.log(randomLetter);
       const rawData = await fetch(
-        `https://www.googleapis.com/books/v1/volumes?q=${randomLetter}&langRestrict=en&maxResults=40&startIndex=${startIndex}&key=${APIKey}`
-      ).then((res) => res.json());
+        `https://www.googleapis.com/books/v1/volumes?q=${randomLetter}&langRestrict=en&maxResults=40&key=${APIKey}`
+      ).then(res => res.json());
       const data = rawData.items || [];
-      const slicedData = data.slice(page*10, page*10 + 10)
-      setGroupedData([...slicedData])
       setBooksData(data);
-        console.log(data)
-        };
-        fetchAllBooks();
-      }, [startIndex]);
-
-
+      console.log(data);
+    };
+    fetchAllBooks();
+  }, []);
 
   // useCallback to match useEffect
   // useCallback is used to memoize the fetchData function.
   // useEffect depends on fetchData. Without useCallback, fetchData would be re-created on every render, leading to useEffect being triggered more often than necessary.
-  const fetchData = useCallback(
-    async (query, searchType) => {
-      let url = `https://www.googleapis.com/books/v1/volumes?langRestrict=en&maxResults=40&startIndex=${startIndex}&key=${APIKey}`;
-      if (searchType === 'author') {
-        // encodeURIComponent is used to encode a part of a URL, typically the query string, to ensure that it is properly formatted and does not contain any characters that could break the URL.
-        url += `&q=inauthor:${encodeURIComponent(query)}`;
-      } else {
-        url += `&q=${encodeURIComponent(query)}`;
-      }
+  const fetchData = useCallback(async (query, searchType) => {
+    let url = `https://www.googleapis.com/books/v1/volumes?langRestrict=en&maxResults=40&key=${APIKey}`;
+    if (searchType === 'author') {
+      // encodeURIComponent is used to encode a part of a URL, typically the query string, to ensure that it is properly formatted and does not contain any characters that could break the URL.
+      url += `&q=inauthor:${encodeURIComponent(query)}`;
+    } else {
+      url += `&q=${encodeURIComponent(query)}`;
+    }
 
-      try {
-        const rawData = await fetch(url).then(res => res.json());
-        const data = rawData.items;
-        setBooksData(data);
-        console.log(data);
-      } catch (error) {
-        console.error('Error fetching data:', error);
-        // Handle error
-      }
-    },
-    [startIndex]
-  );
+    try {
+      const rawData = await fetch(url).then(res => res.json());
+      const data = rawData.items;
+      setBooksData(data);
+      console.log(data);
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    }
+  }, []);
 
   useEffect(() => {
     if (query) {
       fetchData(query, selectedSearchType);
+      console.log('Query', query);
     }
-  }, [startIndex, fetchData]);
-
-  // ???? what should I do with this handleSearch function?
-  // const handleSearch = (query, searchFunction) => {
-  //   if (query.trim() === '') {
-  //     // If the query is empty, reset the data
-  //     setBooksData(null);
-  //     return;
-  //   }
-  //   searchFunction(query);
-  // };
+  }, [fetchData]);
 
   const handleDetailButton = bookId => {
     const bookData = booksData?.filter(book => book.id === bookId)[0];
@@ -111,6 +81,7 @@ const MainPage = () => {
       const filteredData = booksData.filter(book => {
         return book.volumeInfo.categories?.includes(category);
       });
+      console.log(filteredData);
       setFilteredBooksData(filteredData);
       setBookData(null);
     }
@@ -131,66 +102,41 @@ const MainPage = () => {
     alert(`Add ${bookInfo.title} to MyBooks`);
   };
 
-  const maxPages = 10;
-
-  const handleNextPage = () => {
-    if (currentPage < maxPages) {
-      setStartIndex(prev => prev + 10);
-      setCurrentPage(prev => prev + 1);
-    }
-  };
-
-  const handlePreviousPage = () => {
-    if (currentPage > 1) {
-      setStartIndex(prev => prev - 10);
-      setCurrentPage(prev => prev - 1);
-    }
-  };
-
   return (
     <div>
-      <button onClick={handleClick}>click</button>
       <BookSearch
-        // handleSearch={handleSearch}
         booksData={booksData}
         setBooksData={setBooksData}
         setFilteredBooksData={setFilteredBooksData}
-        setStartIndex={setStartIndex}
         query={query}
         setQuery={setQuery}
         fetchData={fetchData}
         selectedSearchType={selectedSearchType}
         setSelectedSearchType={setSelectedSearchType}
-        setCurrentPage={setCurrentPage}
         handleCategoryChange={handleCategoryChange}
+        setIsNewSearch={setIsNewSearch}
+        isNewSearch={isNewSearch}
       />
       <div style={{ display: 'flex' }}>
         {!booksData && <div>No result</div>}
-        <BookCategory onCategoryChange={handleCategoryChange} />
-        {booksData && <BookPageController
-           handlePreviousPage={handlePreviousPage}
-           handleNextPage={handleNextPage}
-           setStartIndex={setStartIndex}
-           currentPage={currentPage}
-           setCurrentPage={setCurrentPage}
-           maxPages={maxPages}/>} 
+        <BookCategory
+          onCategoryChange={handleCategoryChange}
+          setIsNewSearch={setIsNewSearch}
+          isNewSearch={isNewSearch}
+        />
         <div className="search-list-container">
-        <BookList
-          booksData={filteredBooksData || booksData}
-          handleDetailButton={handleDetailButton}
-          groupedData={groupedData}
-         
-        />
-      </div>
-      <div className="book-detail-container">
-        <BookDetail
-          bookData={filteredBooksData || bookData}
-          handleAddToMyBooksButton={handleAddToMyBooksButton}
-        />
-      </div>
-
-
+          <BookList
+            booksData={filteredBooksData || booksData}
+            handleDetailButton={handleDetailButton}
+          />
         </div>
+        <div className="book-detail-container">
+          <BookDetail
+            bookData={bookData}
+            handleAddToMyBooksButton={handleAddToMyBooksButton}
+          />
+        </div>
+      </div>
     </div>
   );
 };

@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import MyBooksList from '../../components/MyBooksList/MyBooksList';
 import * as booksAPI from '../../utilities/books-api';
-import Typography from '@mui/material/Typography';
+// import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 
 
@@ -34,7 +34,7 @@ const MyBooksPage = () => {
 
   return (
     <Box display="flex" flexDirection="column" alignItems="center">
-      {/* <Typography variant="h2" gutterBottom>
+      {/* <Typography variant="h4" gutterBottom>
         My Book List
       </Typography> */}
       <MyBooksList myBooks={myBooks} setMyBooks={setMyBooks} onDeleteBook={handleDeleteBook} />
