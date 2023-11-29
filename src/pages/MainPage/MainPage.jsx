@@ -6,22 +6,28 @@ import { useCallback, useEffect, useState } from 'react';
 import * as booksAPI from '../../utilities/books-api';
 import './MainPage.css';
 
+// why this one is not working!
+const APIKey = import.meta.env.VITE_BOOK_API_KEY;
+
+// const APIKey ='AIzaSyAmb3QsxaJ7qcOG-i9UerqFnesBKqZkEYo';
+
 const MainPage = () => {
   const [booksData, setBooksData] = useState(null);
   const [bookData, setBookData] = useState(null);
   const [filteredBooksData, setFilteredBooksData] = useState(null);
   const [query, setQuery] = useState('');
   const [startIndex, setStartIndex] = useState(0);
-  const [currentPage,setCurrentPage]=useState(1)
+  const [currentPage, setCurrentPage] = useState(1);
   const [selectedSearchType, setSelectedSearchType] = useState('title');
 
   // useCallback to match useEffect
-  // useCallback is used to memoize the fetchDataByTitle function.
-  // useEffect depends on fetchDataByTitle. Without useCallback, fetchDataByTitle would be re-created on every render, leading to useEffect being triggered more often than necessary.
+  // useCallback is used to memoize the fetchData function.
+  // useEffect depends on fetchData. Without useCallback, fetchData would be re-created on every render, leading to useEffect being triggered more often than necessary.
   const fetchData = useCallback(
     async (query, searchType) => {
-      let url = `https://www.googleapis.com/books/v1/volumes?langRestrict=en&maxResults=10&startIndex=${startIndex}&key=AIzaSyAmb3QsxaJ7qcOG-i9UerqFnesBKqZkEYo`;
+      let url = `https://www.googleapis.com/books/v1/volumes?langRestrict=en&maxResults=10&startIndex=${startIndex}&key=${APIKey}`;
       if (searchType === 'author') {
+        // encodeURIComponent is used to encode a part of a URL, typically the query string, to ensure that it is properly formatted and does not contain any characters that could break the URL.
         url += `&q=inauthor:${encodeURIComponent(query)}`;
       } else {
         url += `&q=${encodeURIComponent(query)}`;
@@ -46,7 +52,7 @@ const MainPage = () => {
     }
   }, [startIndex, fetchData]);
 
-  // ???? what should I do with this?
+  // ???? what should I do with this handleSearch function?
   const handleSearch = (query, searchFunction) => {
     if (query.trim() === '') {
       // If the query is empty, reset the data
@@ -92,35 +98,22 @@ const MainPage = () => {
     alert(`Add ${bookInfo.title} to MyBooks`);
   };
 
-  // const handleNextPage = () => {
-  //   setStartIndex(prev => prev + 10);
-  //   // if(startIndex>190) set condition ???
-  // };
-  // // console.log(startIndex);
-  // const handlePreviousPage = () => {
-  //   setStartIndex(prev => prev - 10);
-  //   // if(startIndex<=10) button disable or set alert condition??
-  // };
-
-
-  const maxPages=10
+  const maxPages = 10;
 
   const handleNextPage = () => {
     if (currentPage < maxPages) {
-      setStartIndex(prev => prev + 10)
-      setCurrentPage(prev => prev + 1)
-    }}
+      setStartIndex(prev => prev + 10);
+      setCurrentPage(prev => prev + 1);
+    }
+  };
   console.log(startIndex);
 
-
   const handlePreviousPage = () => {
-    if(currentPage>1){
-    setStartIndex(prev => prev - 10)
-    setCurrentPage(prev=>prev-1)
-  }}
-  
-
-
+    if (currentPage > 1) {
+      setStartIndex(prev => prev - 10);
+      setCurrentPage(prev => prev - 1);
+    }
+  };
 
   return (
     <div>
@@ -137,29 +130,28 @@ const MainPage = () => {
         setSelectedSearchType={setSelectedSearchType}
         setCurrentPage={setCurrentPage}
       />
-      <BookCategory onCategoryChange={handleCategoryChange} />
-      <div style={{ display: 'inline-block' }}>
-      </div>
-      <div className='search-container'>
+      <div style={{ display: 'flex' }}>
         {!booksData && <div>No result</div>}
+        <BookCategory onCategoryChange={handleCategoryChange} />
         <div className="search-list-container">
-          <BookList
-            booksData={filteredBooksData || booksData}
-            handleDetailButton={handleDetailButton}
-            handlePreviousPage={handlePreviousPage}
+
+        <BookList
+          booksData={filteredBooksData || booksData}
+          handleDetailButton={handleDetailButton}
+          handlePreviousPage={handlePreviousPage}
           handleNextPage={handleNextPage}
           setStartIndex={setStartIndex}
           currentPage={currentPage}
           setCurrentPage={setCurrentPage}
           maxPages={maxPages}
-          />
+        />
+      </div>
         </div>
-        <div className='book-detail-container'>
-          <BookDetail
-            bookData={filteredBooksData || bookData}
-            handleAddToMyBooksButton={handleAddToMyBooksButton}
-          />
-        </div>
+      <div className="book-detail-container">
+        <BookDetail
+          bookData={filteredBooksData || bookData}
+          handleAddToMyBooksButton={handleAddToMyBooksButton}
+        />
       </div>
     </div>
   );
