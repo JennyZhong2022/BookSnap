@@ -91,6 +91,7 @@ const MainPage = () => {
       authors: bookInfo.authors,
       image: bookInfo.imageLinks.thumbnail,
       publishDate: bookInfo.publishDate,
+      description: bookInfo.description,
       bookId: bookData.id,
       note: '',
     };
