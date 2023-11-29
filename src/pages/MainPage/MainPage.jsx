@@ -6,6 +6,10 @@ import { useCallback, useEffect, useState } from 'react';
 import * as booksAPI from '../../utilities/books-api';
 import './MainPage.css';
 import BookPageController from '../../components/BookPageController/BookPageController';
+import Typography from '@mui/material/Typography';
+import Box from '@mui/material/Box';
+import Grid from '@mui/material/Grid';
+
 
 // why this one is not working!
 const APIKey = import.meta.env.VITE_BOOK_API_KEY;
@@ -156,7 +160,7 @@ const MainPage = () => {
         setCurrentPage={setCurrentPage}
         handleCategoryChange={handleCategoryChange}
       />
-      <div style={{ display: 'flex' }}>
+      <div >
         {!booksData && <div>No result</div>}
         <BookCategory onCategoryChange={handleCategoryChange} />
         {booksData && <BookPageController
@@ -166,24 +170,36 @@ const MainPage = () => {
            currentPage={currentPage}
            setCurrentPage={setCurrentPage}
            maxPages={maxPages}/>} 
-        <div className="search-list-container">
-        <BookList
-          booksData={filteredBooksData || booksData}
-          handleDetailButton={handleDetailButton}
-         
-        />
-      </div>
-      <div className="book-detail-container">
-        <BookDetail
-          bookData={filteredBooksData || bookData}
-          handleAddToMyBooksButton={handleAddToMyBooksButton}
-        />
-      </div>
 
-
-        </div>
+        <Box xs={{ flexGrow: 1 }}>
+          <Grid container spacing={4} columns={16}>
+            <Grid item xs={2}>
+            </Grid>
+            <Grid item xs={7}>
+              <div className="search-list-container">
+                <BookList
+                  booksData={filteredBooksData || booksData}
+                  handleDetailButton={handleDetailButton}        
+                />
+              </div>
+            </Grid>
+            <Grid item xs={7}>
+              <div className="book-detail-container">
+                <BookDetail
+                  bookData={filteredBooksData || bookData}
+                  handleAddToMyBooksButton={handleAddToMyBooksButton}
+                />
+              </div>
+            </Grid>
+            <Grid item xs>
+            </Grid>
+          </Grid> 
+        </Box>
+      </div>
     </div>
   );
 };
 
 export default MainPage;
+
+
