@@ -46,7 +46,8 @@ const MyBooksListItem = ({ book, onDeleteBook }) => {
   };
 
   return (
-    <Grid container spacing={2} style={{borderRadius: '5px', margin: '1em', padding: '1em', justifyContent: 'center', backgroundColor: '#ead7bb' }}>
+    <>
+    <Grid container spacing={2} style={{borderRadius: '5px', margin: '1em', padding: '1em', justifyContent: 'center', backgroundColor: '#ead7bb'}}>
       <Grid item>
         <img src={book.image} alt={book.title} style={{ borderRadius: '10px' }}/>
       </Grid>
@@ -91,7 +92,7 @@ const MyBooksListItem = ({ book, onDeleteBook }) => {
         </div>
       </Grid>
     </Grid>
-    <div className='book-container'>
+    {/* <div className='book-container'>
       <img src={book.image} alt={book.title} />
       <div style={{width: '100%'}}>
       <div className='book-content'>
@@ -108,7 +109,8 @@ const MyBooksListItem = ({ book, onDeleteBook }) => {
 
 
       </div>
-    </div>
+    </div> */}
+    </>
   );
 };
 

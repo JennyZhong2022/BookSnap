@@ -34,9 +34,9 @@ const MyBooksPage = () => {
 
   return (
     <Box display="flex" flexDirection="column" alignItems="center">
-      <Typography variant="h2" gutterBottom>
+      {/* <Typography variant="h2" gutterBottom>
         My Book List
-      </Typography>
+      </Typography> */}
       <MyBooksList myBooks={myBooks} setMyBooks={setMyBooks} onDeleteBook={handleDeleteBook} />
     </Box>
   );
