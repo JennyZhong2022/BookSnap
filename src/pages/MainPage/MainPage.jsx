@@ -146,13 +146,15 @@ const MainPage = () => {
           maxPages={maxPages}
         />
       </div>
-        </div>
       <div className="book-detail-container">
         <BookDetail
           bookData={filteredBooksData || bookData}
           handleAddToMyBooksButton={handleAddToMyBooksButton}
         />
       </div>
+
+
+        </div>
     </div>
   );
 };
