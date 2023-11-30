@@ -82,7 +82,7 @@ const MainPage = () => {
 
     try {
       const rawData = await fetch(url).then(res => res.json());
-      const data = rawData.items || []; // Handle no results
+      const data = rawData.items // Handle no results
       setBooksData(data);
       console.log(data);
     } catch (error) {
