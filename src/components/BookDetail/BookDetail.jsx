@@ -23,6 +23,15 @@ const BookDetail = ({
     fontWeight: 'bolder',
     minWidth: '130px',
   };
+  const addedButtonStyle = {
+    backgroundColor: '#a13a3a',
+    color: 'white',
+    borderStyle: 'solid',
+    fontSize: '0.5em',
+    borderColor: '#fff2d8',
+    fontWeight: 'bolder',
+    minWidth: '130px',
+  };
 
   return (
     <>
@@ -33,6 +42,7 @@ const BookDetail = ({
           padding: '1em',
           justifyContent: 'center',
           backgroundColor: '#ead7bb',
+          
         }}
       >
         <div
@@ -55,18 +65,33 @@ const BookDetail = ({
                 />
                 <div>
                   <h2 style={{ padding: '1em 0 0 0' }}>
-                    {user && hasBookBeenAdded ? (
+                    {!user && (
+                      <span
+                        style={{
+                          fontSize: '12px',
+                          border: '2px solid black',
+                          padding: '5px',
+                          borderRadius: '10px',
+                          backgroundColor: '#fff2d8',
+                        }}
+                      >
+                        Please <Link to="/api/user">login</Link> to add this
+                        book
+                      </span>
+                    )}
+                    {user && hasBookBeenAdded && (
                       <Button
                         onClick={handleAddToMyBooksButton}
                         disabled={hasBookBeenAdded}
-                        style={buttonStyle}
+                        style={addedButtonStyle}
                         variant="outlined"
                         startIcon={<ListIcon />}
                         size="small"
                       >
                         Book Is Added
                       </Button>
-                    ) : (
+                    )}
+                    {user && !hasBookBeenAdded && (
                       <Button
                         onClick={handleAddToMyBooksButton}
                         disabled={bookData.addedToMyBooks}
@@ -75,25 +100,8 @@ const BookDetail = ({
                         startIcon={<ListIcon />}
                         size="small"
                       >
-                        Add to MyBooks
+                        Add to My Books
                       </Button>
-                    )}
-
-                    {!user && (
-                      <div>
-                        <span
-                          style={{
-                            fontSize: '12px',
-                            border: '2px solid black',
-                            padding: '5px',
-                            borderRadius: '10px',
-                            backgroundColor: '#fff2d8',
-                          }}
-                        >
-                          Please <Link to="/api/user">login</Link> to add this
-                          book
-                        </span>
-                      </div>
                     )}
                   </h2>
                 </div>
@@ -103,19 +111,19 @@ const BookDetail = ({
                   {volumeData.title}{' '}
                 </Typography>
               </div>
-              {volumeData.authors?.map(e => (
-                <Typography
-                  key={uuid()}
-                  variant="body1"
-                  component="p"
-                  fontStyle="italic"
-                  style={{ marginTop: '8px', marginBottom: '10px' }}
-                >
-                  By {e}
-                </Typography>
-              ))}{' '}
+              <Typography
+                key={uuid()}
+                variant="body1"
+                component="p"
+                fontStyle="italic"
+                style={{ marginTop: '8px', marginBottom: '10px' }}
+              >By{' '} 
+                {volumeData.authors?.map(e => (
+                  <span key={uuid}>{e}</span>
+                ))}
+              </Typography>{' '}
               <Typography>Published: {volumeData.publishedDate}</Typography>
-              <Typography style={{ textAlign: 'justify' }}>
+              <Typography style={{ textAlign: 'justify'}} sx={{ pr: '5vw' }}>
                 <span style={{ width: '100%', height: '50%' }}>
                   {volumeData.description}
                 </span>

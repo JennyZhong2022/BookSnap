@@ -27,6 +27,17 @@ const MyBooksList = ({ myBooks, onDeleteBook }) => {
     }
   };
 
+
+  const buttonStyles = {
+    backgroundColor: '#113946',
+    color: 'white',
+    fontSize: '1em',
+    fontWeight: 'bolder',
+    minWidth: '130px',
+    minHeight: '55px'
+  };
+
+
   return (
     <div className="main-container">
       <TextField
@@ -59,5 +70,7 @@ const MyBooksList = ({ myBooks, onDeleteBook }) => {
     </div>
   );
 };
+
+
 
 export default MyBooksList;

@@ -38,3 +38,12 @@
   margin-left: 27em;
 }
 
+.mybooks-search {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.total-books {
+  padding: 1rem;
+}

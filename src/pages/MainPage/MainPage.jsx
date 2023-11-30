@@ -28,9 +28,9 @@ const MainPage = ({ user }) => {
     French: 'fr',
     Italian: 'it',
     Spanish: 'es',
-    German: 'de',
+    German: 'de',  // Corrected code for German
   };
-
+  
   // useCallback to match useEffect
   // useCallback is used to memoize the fetchData function.
   // useEffect depends on fetchData. Without useCallback, fetchData would be re-created on every render, leading to useEffect being triggered more often than necessary.
@@ -57,7 +57,7 @@ const MainPage = ({ user }) => {
         const rawData = await fetch(url).then(res => res.json());
         const data = rawData.items || []; // Handle no results
         setBooksData(data);
-        console.log(data);
+        // console.log(data);
       } catch (error) {
         console.error('Error fetching data:', error);
       }
@@ -118,7 +118,6 @@ const MainPage = ({ user }) => {
       setCurrentPage(prev => prev + 1);
     }
   };
-  console.log(startIndex);
 
   const handlePreviousPage = () => {
     if (currentPage > 1) {
@@ -159,9 +158,11 @@ const MainPage = ({ user }) => {
           />
         )}
 
+<div style={{ padding: "0 5rem" }}>
         <Box xs={{ flexGrow: 1 }}>
           <Grid container columns={16}>
-            <Grid item xs={2}></Grid>
+            <Grid item xs={1}>
+            </Grid>
             <Grid item xs={7}>
               <div className="search-list-container">
                 <BookList
@@ -183,6 +184,7 @@ const MainPage = ({ user }) => {
             <Grid item xs></Grid>
           </Grid>
         </Box>
+        </div>
       </div>
     </div>
   );

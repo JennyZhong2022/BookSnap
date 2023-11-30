@@ -9,13 +9,6 @@ const BookList = ({
   
   return (
     <div >
-      {/* <div>
-        {booksData && (
-          
-        )}
-      </div> */}
-
-      <div className='booksList-container'>
         {booksData?.map(bookData => (
           <div key={bookData.id} className="search-item">
             <BookListItem
@@ -25,7 +18,6 @@ const BookList = ({
           </div>
         ))}
       </div>
-    </div>
   );
 };
 
