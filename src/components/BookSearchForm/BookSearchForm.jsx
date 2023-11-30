@@ -79,11 +79,12 @@ const BookSearchForm = ({  setStartIndex, query, setQuery ,fetchData, selectedSe
           <option key={language} value={language}>{language}</option>
         ))}
         </select>
-
+        <span>{'   '}</span>
         <button type="submit">Search</button>
         </form>
       </div>  
-     
+      
+  
   );
 };
 
