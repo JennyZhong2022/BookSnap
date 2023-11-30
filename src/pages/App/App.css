@@ -8,3 +8,7 @@
 .App {
   padding: 1rem 10rem;
 }
+.web-container {
+  height: 100svh;
+  overflow: hidden;
+}

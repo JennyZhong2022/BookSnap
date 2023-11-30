@@ -13,7 +13,7 @@ import Footer from '../../components/Footer/Footer';
 export default function App() {
   const [user, setUser] = useState(getUser());
   return (
-    <div>
+    <div className='web-container'>
       <NavBar user={user} setUser={setUser} />
     <main className="App">
       {
