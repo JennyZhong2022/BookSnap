@@ -92,5 +92,7 @@ _28 Nov - 30 Nov_
 
 _1 Dec_
 
-## Nest Steps
+## Next Steps
 - Implement OAuth Authentication
+- AbortController for a responsive search
+- Make book collections public to other users
