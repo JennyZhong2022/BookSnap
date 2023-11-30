@@ -99,6 +99,14 @@ const BookSearchForm = ({
                 id="outlined-search"
                 label="Search..."
                 type="search"
+                sx={{
+                  '& fieldset': {
+                    borderColor: '#000', 
+                    borderWidth: '2px', 
+                  },
+                  '& label': {
+                    color: '#000',}
+                  }}
                 value={query}
                 onChange={_handleTitleChange}
                 placeholder={`Search by ${
@@ -124,6 +132,14 @@ const BookSearchForm = ({
                 value={selectedSearchType}
                 label=""
                 onChange={_handleSearchTypeChange}
+                sx={{
+                  '& fieldset': {
+                    borderColor: '#000', 
+                    borderWidth: '2px', 
+                  },
+                  '& label': {
+                    color: '#000',}
+                }}
               >
                 <MenuItem value=""></MenuItem>
                 <MenuItem value="title">Title</MenuItem>
@@ -134,13 +150,21 @@ const BookSearchForm = ({
 
           <div className="categories-container">
             <FormControl fullWidth>
-              <InputLabel id="demo-simple-select-label">Categories</InputLabel>
+              <InputLabel id="demo-simple-select-label" style={{ color: 'black' }}>Categories</InputLabel>
               <Select
                 labelId="demo-simple-select-label"
                 id="demo-simple-select"
                 value={category}
                 label="Categories"
                 onChange={_handleCategoryChange}
+                sx={{
+                  '& fieldset': {
+                    borderColor: '#000', 
+                    borderWidth: '2px', 
+                  },
+                  '& label': {
+                    color: '#000',}
+                }}
               >
                 <MenuItem value="">
                   <em>Categories</em>
@@ -157,13 +181,21 @@ const BookSearchForm = ({
           </div>
           <div className="languages-container">
             <FormControl fullWidth>
-              <InputLabel id="demo-simple-select-label">Languages</InputLabel>
+              <InputLabel id="demo-simple-select-label" style={{ color: 'black' }}>Languages</InputLabel>
               <Select
                 labelId="demo-simple-select-label"
                 id="demo-simple-select"
                 value={language}
                 label="Languages"
                 onChange={_handleLanguageChange}
+                sx={{
+                  '& fieldset': {
+                    borderColor: '#000', 
+                    borderWidth: '2px', 
+                  },
+                  '& label': {
+                    color: '#000',}
+                }}
               >
                 <MenuItem value="">
                   <em>Languages</em>

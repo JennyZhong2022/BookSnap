@@ -56,12 +56,12 @@ const BookDetail = ({
           }}
         >
           {bookData && volumeData ? (
-            <div style={{ width: '500px' }}>
+            <div style={{ width: '350px' }}>
               <div style={{ display: 'inline-flex', flexDirection: 'column' }}>
                 <img
                   src={volumeData.imageLinks?.thumbnail}
                   alt={volumeData.title}
-                  style={{ padding: '0em 2em 0em 0em', height: '20em' }}
+                  style={{ height: '20em', borderRadius: '10px' }}
                 />
                 <div>
                   <h2 style={{ padding: '1em 0 0 0' }}>

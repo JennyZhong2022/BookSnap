@@ -144,7 +144,7 @@ const MainPage = ({ user }) => {
         setSelectedSearchType={setSelectedSearchType}
         setCurrentPage={setCurrentPage}
       />
-      <div>
+      <div className="book-list">
         {!booksData && <div>No result</div>}
         <br />
         {booksData && (
@@ -158,7 +158,7 @@ const MainPage = ({ user }) => {
           />
         )}
 
-<div style={{ padding: "0 5rem" }}>
+<div style={{ padding: "0" }}>
         <Box xs={{ flexGrow: 1 }}>
           <Grid container columns={16}>
             <Grid item xs={1}>

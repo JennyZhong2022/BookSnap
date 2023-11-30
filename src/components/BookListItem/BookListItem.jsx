@@ -24,7 +24,7 @@ const BookListItem = ({ bookData, handleDetailButton }) => {
 
   return (
     <>
-      <Grid container spacing={2} style={{borderRadius: '5px', margin: '1em', padding: '1em', justifyContent: 'center', backgroundColor: '#ead7bb'}}>
+      <Grid className="hover-grid" container spacing={2} style={{borderRadius: '5px', margin: '1em', padding: '1em', justifyContent: 'center', backgroundColor: '#ead7bb'}}>
         <Grid item>
           <img src={bookData.volumeInfo.imageLinks?.thumbnail} alt="" style={{ borderRadius: '10px' }} />
         </Grid>

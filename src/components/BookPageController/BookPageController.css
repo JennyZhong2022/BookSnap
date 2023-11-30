@@ -1,0 +1,10 @@
+.page-control button {
+    border-radius: 5px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.page-control {
+    display: flex;
+    margin-bottom: 1em;
+}

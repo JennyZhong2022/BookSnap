@@ -37,7 +37,7 @@ const BookPageController = ({ handlePreviousPage,
 
   return (
 
-    <div style={{paddingLeft: '10rem'}}>
+    <div className='page-control' style={{paddingLeft: '13rem'}}>
     <button onClick={handlePreviousPage} disabled={currentPage === 1}>
       Previous Page
     </button>
