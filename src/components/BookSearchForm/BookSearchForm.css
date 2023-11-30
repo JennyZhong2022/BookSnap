@@ -1,0 +1,29 @@
+.categories-container {
+    width: 10rem;
+
+    padding: 1rem 0.5rem 1rem 2rem;
+
+}
+
+.languages-container {
+    width: 10rem;
+    padding: 1rem 2rem 1rem 0.5rem;
+}
+
+#demo-simple-select {
+    background-color: white;
+   
+}
+
+.search-type-container {
+    padding: 1rem 0rem;
+    width: 8rem;
+}
+
+
+
+.submit-button {
+    padding: 1rem 2.5rem;
+    background-color: '#113946';
+}
+

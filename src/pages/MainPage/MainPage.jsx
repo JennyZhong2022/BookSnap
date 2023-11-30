@@ -158,9 +158,11 @@ const MainPage = ({ user }) => {
           />
         )}
 
+<div style={{ padding: "5rem" }}>
         <Box xs={{ flexGrow: 1 }}>
           <Grid container columns={16}>
-            <Grid item xs={2}></Grid>
+            <Grid item xs={1}>
+            </Grid>
             <Grid item xs={7}>
               <div className="search-list-container">
                 <BookList
@@ -182,6 +184,7 @@ const MainPage = ({ user }) => {
             <Grid item xs></Grid>
           </Grid>
         </Box>
+        </div>
       </div>
     </div>
   );
