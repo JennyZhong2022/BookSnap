@@ -181,7 +181,7 @@ const MainPage = ({ user }) => {
                 />
               </div>
             </Grid>
-            {/* <Grid item xs></Grid> */}
+            <Grid item xs></Grid>
           </Grid>
         </Box>
         </div>
