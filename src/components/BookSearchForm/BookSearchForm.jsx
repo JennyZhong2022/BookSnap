@@ -15,7 +15,6 @@ const languages = [
   'French',
   'Italian',
   'Spanish',
-  'Chinese',
   'German',
 ];
 
@@ -55,7 +54,8 @@ const BookSearchForm = ({  setStartIndex, query, setQuery ,fetchData, selectedSe
        <form onSubmit={handleSubmit} >
         <input 
         type="text" 
-        value={query} 
+          value={query} 
+          required
         onChange={_handleTitleChange}
         placeholder={`Search by ${selectedSearchType === 'title' ? 'Title' : 'Author'}`}
         />

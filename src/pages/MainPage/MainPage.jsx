@@ -55,7 +55,6 @@ const MainPage = () => {
     'French': 'fr',
     'Italian': 'it',
     'Spanish': 'es',
-    'Chinese': 'zh',
     'German': 'de',
   };
   
@@ -97,7 +96,18 @@ const MainPage = () => {
     if (query) {
       fetchData(query, selectedSearchType,category,language);
     }
-  }, [startIndex,fetchData]);
+  }, [startIndex, fetchData]);
+  
+
+  useEffect(() => {
+    // Define default parameters for initial fetch
+    const defaultQuery = 'bestsellers';
+    const defaultSearchType = 'title'; // or 'author', whichever you prefer
+    const defaultCategory = 'All';
+    const defaultLanguage = 'All';
+
+    fetchData(defaultQuery, defaultSearchType, defaultCategory, defaultLanguage);
+  }, [fetchData]);
 
   // ???? what should I do with this handleSearch function?
   // const handleSearch = (query, searchFunction) => {
