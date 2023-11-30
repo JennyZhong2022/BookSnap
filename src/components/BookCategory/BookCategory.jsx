@@ -1,3 +1,8 @@
+import * as React from 'react';
+import TextField from '@mui/material/TextField';
+import Autocomplete from '@mui/material/Autocomplete';
+
+
 const categories = [
   'Art',
   'Biography',
@@ -15,7 +20,9 @@ const BookCategory = ({ onCategoryChange }) => {
   };
 
   return (
+    
     <div>
+
       <select onChange={handleCategoryChange}>
         <option value="">All Categories</option>
         {categories.map(category => (
