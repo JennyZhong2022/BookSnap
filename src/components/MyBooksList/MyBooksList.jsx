@@ -76,6 +76,26 @@ const MyBooksList = ({ myBooks, onDeleteBook }) => {
                 />
               </div>
             </Box>
+<<<<<<< Updated upstream
+=======
+
+            <div className="submit-button" >
+              <Button variant="contained" style={buttonStyles} type="submit" startIcon={<SearchIcon />}>
+                Search
+              </Button>
+            </div>
+          </div>
+        </form>
+      </div> 
+
+
+    <div className='books-container'>
+<div className="total-books">
+    <Typography variant="h6" component="span">
+    My Total Books: {myBooks.length}
+            </Typography>
+            </div>
+>>>>>>> Stashed changes
 
             <div className="submit-button" >
               <Button variant="contained" style={buttonStyles} type="submit" startIcon={<SearchIcon />}>
@@ -92,10 +112,17 @@ const MyBooksList = ({ myBooks, onDeleteBook }) => {
           </Typography>
         </div>
 
+<<<<<<< Updated upstream
         {filteredBooks.map((book) => (
           <MyBooksListItem key={book._id} book={book} onDeleteBook={onDeleteBook} />
         ))}
       </div>
+=======
+      {filteredBooks.map((book) => (
+        <MyBooksListItem key={book._id} book={book} onDeleteBook={onDeleteBook} />
+      ))}
+    </div>
+>>>>>>> Stashed changes
     </>
   );
 };

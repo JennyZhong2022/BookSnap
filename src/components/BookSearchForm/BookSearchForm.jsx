@@ -68,97 +68,119 @@ const BookSearchForm = ({  setStartIndex, query, setQuery ,fetchData, selectedSe
   
   return (
     <div className="BookSearchForm" >
-      <form onSubmit={handleSubmit} >
-        <div style={{ display: 'inline-flex', justifyContent: 'space-between', columns: '10',  padding: '1rem', borderRadius: '1%' }} >
-          <div className="categories-container" >
-            <FormControl fullWidth>
-              <InputLabel id="demo-simple-select-label">Categories</InputLabel>
-              <Select
-                labelId="demo-simple-select-label"
-                id="demo-simple-select"
-                value={category}
-                label="Categories"
-                onChange={_handleCategoryChange}
-              >
-                <MenuItem value="">
-                  <em>Categories</em> 
-                </MenuItem>
-                <MenuItem value={categories[0]}>Art</MenuItem>
-                <MenuItem value={categories[1]}>Biography</MenuItem>
-                <MenuItem value={categories[2]}>Computers</MenuItem>
-                <MenuItem value={categories[3]}>Fiction</MenuItem>
-                <MenuItem value={categories[4]}>History</MenuItem>
-                <MenuItem value={categories[5]}>Medical</MenuItem>
-                <MenuItem value={categories[6]}>Poetry</MenuItem>
-              </Select>
-            </FormControl>
-          </div>
-          <div className="languages-container">
-            <FormControl fullWidth>
-              <InputLabel id="demo-simple-select-label">Languages</InputLabel>
-              <Select
-                labelId="demo-simple-select-label"
-                id="demo-simple-select"
-                value={language}
-                label="Languages"
-                onChange={_handleLanguageChange}
-              >
-                <MenuItem value="">
-                  <em>Languages</em> 
-                </MenuItem>
-                <MenuItem value={languages[0]}>English</MenuItem>
-                <MenuItem value={languages[1]}>Korean</MenuItem>
-                <MenuItem value={languages[2]}>French</MenuItem>
-                <MenuItem value={languages[3]}>Italian</MenuItem>
-                <MenuItem value={languages[4]}>Spanish</MenuItem>
-                <MenuItem value={languages[1]}>Chinese</MenuItem>
-                <MenuItem value={languages[1]}>German</MenuItem>
-              </Select>
-            </FormControl>
-          </div>
-          <Box
-            component="form"
-            sx={{
-              '& .MuiTextField-root': { m: 2, width: '35ch' },
-            }}
-            noValidate
-            autoComplete="off"
-            onSubmit={handleSubmit}
+       
+       <form onSubmit={handleSubmit} >
+
+       <div style={{ display: 'inline-flex', justifyContent: 'space-between', columns: '10',  padding: '1rem', borderRadius: '1%' }} >
+      
+
+       <div className="categories-container" >
+        <FormControl fullWidth>
+          <InputLabel id="demo-simple-select-label">Categories</InputLabel>
+          <Select
+            labelId="demo-simple-select-label"
+            id="demo-simple-select"
+            value={category}
+            label="Categories"
+            onChange={_handleCategoryChange}
           >
-            <div className="search-field" >
-              <TextField 
-                id="outlined-search" 
-                label="Search..." 
-                type="search" 
-                value={query} 
-                onChange={_handleTitleChange}
-                placeholder={`Search by ${selectedSearchType === 'title' ? 'Title' : 'Author'}`}/>
-            </div>
-          </Box>
-          <div className="search-type-container" >
-            <FormControl fullWidth>
-              <InputLabel id="demo-simple-select-label"></InputLabel>
-              <Select
-                labelId="demo-simple-select-label"
-                id="demo-simple-select"
-                value={selectedSearchType}
-                label=""
-                onChange={_handleSearchTypeChange}
-              >
-                <MenuItem value=""></MenuItem>
-                <MenuItem value="title">Title</MenuItem>
-                <MenuItem value="author">Author</MenuItem>
-              </Select>
-            </FormControl>
-          </div>
-          <div className="submit-button">
-            <Button variant="contained" style={buttonStyles} type="submit" startIcon={<SearchIcon />}>
-              Search
-            </Button>
-          </div>
+            <MenuItem value="">
+              <em>Categories</em> 
+            </MenuItem>
+            <MenuItem value={categories[0]}>Art</MenuItem>
+            <MenuItem value={categories[1]}>Biography</MenuItem>
+            <MenuItem value={categories[2]}>Computers</MenuItem>
+            <MenuItem value={categories[3]}>Fiction</MenuItem>
+            <MenuItem value={categories[4]}>History</MenuItem>
+            <MenuItem value={categories[5]}>Medical</MenuItem>
+            <MenuItem value={categories[6]}>Poetry</MenuItem>
+
+          </Select>
+        </FormControl>
         </div>
-      </form>
-    </div>  
+      
+
+
+        <div className="languages-container">
+          <FormControl fullWidth>
+            <InputLabel id="demo-simple-select-label">Languages</InputLabel>
+            <Select
+              labelId="demo-simple-select-label"
+              id="demo-simple-select"
+              value={language}
+              label="Languages"
+              onChange={_handleLanguageChange}
+            >
+
+        <MenuItem value="">
+              <em>Languages</em> 
+            </MenuItem>
+        <MenuItem value={languages[0]}>English</MenuItem>
+            <MenuItem value={languages[1]}>Korean</MenuItem>
+            <MenuItem value={languages[2]}>French</MenuItem>
+            <MenuItem value={languages[3]}>Italian</MenuItem>
+            <MenuItem value={languages[4]}>Spanish</MenuItem>
+            <MenuItem value={languages[1]}>Chinese</MenuItem>
+            <MenuItem value={languages[1]}>German</MenuItem>
+
+          </Select>
+        </FormControl>
+        </div>
+
+
+      
+      <Box
+      component="form"
+      sx={{
+        '& .MuiTextField-root': { m: 2, width: '35ch' },
+      }}
+      noValidate
+      autoComplete="off"
+      onSubmit={handleSubmit}
+    >
+
+<div className="search-field" >
+<TextField id="outlined-search" label="Search..." type="search" value={query} 
+        onChange={_handleTitleChange}
+        placeholder={`Search by ${selectedSearchType === 'title' ? 'Title' : 'Author'}`}/>
+
+</div>
+</Box>
+
+
+
+
+<div className="search-type-container" >
+        <FormControl fullWidth>
+          <InputLabel id="demo-simple-select-label"></InputLabel>
+          <Select
+            labelId="demo-simple-select-label"
+            id="demo-simple-select"
+            value={selectedSearchType}
+            label=""
+            onChange={_handleSearchTypeChange}
+          >
+        <MenuItem value="">
+            </MenuItem>
+            <MenuItem value="title">Title</MenuItem>
+            <MenuItem value="author">Author</MenuItem>
+  
+
+          </Select>
+        </FormControl>
+        </div>
+
+<div className="submit-button">
+      <Button variant="contained" style={buttonStyles} type="submit" startIcon={<SearchIcon />}>
+      Search
+    </Button>
+    </div>
+
+      </div>
+    
+        </form>
+      </div>  
+     
   );
 };
 
