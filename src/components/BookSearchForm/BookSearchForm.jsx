@@ -2,7 +2,6 @@
 
 
 const categories = [
-  'All',
   'Art',
   'Biography',
   'Computers',
@@ -13,7 +12,6 @@ const categories = [
 ];
 
 const languages = [
-  'All',
   'English',
   'Korean',
   'French',
@@ -23,25 +21,37 @@ const languages = [
   'German',
 ];
 
-const BookSearchForm = ({  setStartIndex, query, setQuery ,fetchData, selectedSearchType,setSelectedSearchType,setCurrentPage}) => {
+const BookSearchForm = ({  setStartIndex, query, setQuery ,fetchData, selectedSearchType,setSelectedSearchType,setCurrentPage,category, setCategory,language,setLanguage}) => {
 
   
 
 
-  const handleChange = (event) => {
+  const _handleTitleChange = (event) => {
     setQuery(event.target.value);
   }
 
+  const _handleSearchTypeChange = (event) => {
+    setSelectedSearchType(event.target.value);
+  }
+
+  const _handleCategoryChange = (event) => {
+    setCategory(event.target.value)
+  }
+
+  const _handleLanguageChange = (event) => {
+    setLanguage(event.target.value);
+    console.log("Selected Language:", event.target.value); // Debugging
+  };
+  
+
   const handleSubmit = (event) => {
     event.preventDefault();
-    fetchData(query, selectedSearchType);
+    fetchData(query, selectedSearchType, category,language);
     setStartIndex(0)
     setCurrentPage(1)
   }
 
-  const handleSearchTypeChange = (event) => {
-    setSelectedSearchType(event.target.value);
-  }
+  
   
 
   
@@ -49,38 +59,50 @@ const BookSearchForm = ({  setStartIndex, query, setQuery ,fetchData, selectedSe
   return (
     <div className="BookSearchForm" style={{border: "1px solid black"}}>
  
-      <div>
-        <select name="Category">
+      
+
+  
+       
+   
+
+      
+
+     
+      
+       
+       <form onSubmit={handleSubmit} >
+        <input 
+        type="text" 
+        value={query} 
+        onChange={_handleTitleChange}
+        placeholder={`Search by ${selectedSearchType === 'title' ? 'Title' : 'Author'}`}
+        />
+        
+        <select onChange={_handleSearchTypeChange} value={selectedSearchType}>
+        <option value="title">Title</option>
+        <option value="author">Author</option>
+      </select>
+      
+          <select name="Category" onChange={_handleCategoryChange}
+          value={category}>
           <option value="">Categories</option>
           {categories.map(category => (
           <option key={category} value={category}>{category}</option>
         ))}
         </select>
-      </div>
 
-      <div>
-        <select name="Language">
+        <select name="Language" onChange={_handleLanguageChange} value={language}>
           <option value="">Languages</option>
           {languages.map(language => (
           <option key={language} value={language}>{language}</option>
         ))}
         </select>
-      </div>
 
-      <input 
-        type="text" 
-        value={query} 
-        onChange={handleChange}
-        placeholder={`Search by ${selectedSearchType === 'title' ? 'Title' : 'Author'}`}
-      />
-      <button onClick={handleSubmit}>Search</button>
-      <select onChange={handleSearchTypeChange} value={selectedSearchType}>
-        <option value="title">Title</option>
-        <option value="author">Author</option>
-      </select>
-
-
-    </div>
+        <button type="submit">Search</button>
+        </form>
+      </div>  
+      
+  
   );
 };
 
