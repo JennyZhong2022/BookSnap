@@ -205,7 +205,7 @@ const MainPage = () => {
            maxPages={maxPages}/>} 
 
         <Box xs={{ flexGrow: 1 }}>
-          <Grid container spacing={4} columns={16}>
+          <Grid container columns={16}>
             <Grid item xs={2}>
             </Grid>
             <Grid item xs={7}>
