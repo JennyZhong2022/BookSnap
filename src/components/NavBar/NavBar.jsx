@@ -6,7 +6,7 @@ import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import * as userService from '../../utilities/users-service';
 import './NavBar.css';
-import AutoStoriesRoundedIcon from '@mui/icons-material/AutoStoriesRounded';
+
 
 export default function NavBar({ user, setUser }) {
   const _handleLogOut = () => {
