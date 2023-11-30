@@ -1,4 +1,4 @@
-# SPA project: BookSnap&copy;
+# SPA project: [BookSnap&copy;](https://booksnap-ecea12c610c0.herokuapp.com/)
 
 - 24 Nov - 1 Dec 2023 (1 week)
 - Member: Annabelle , Jenny Zhong, Phougn Vu, Yonghee Kim (alphabetical order)

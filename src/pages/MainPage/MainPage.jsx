@@ -57,7 +57,7 @@ const MainPage = ({ user }) => {
         const rawData = await fetch(url).then(res => res.json());
         const data = rawData.items || []; // Handle no results
         setBooksData(data);
-        console.log(data);
+        // console.log(data);
       } catch (error) {
         console.error('Error fetching data:', error);
       }
@@ -118,7 +118,6 @@ const MainPage = ({ user }) => {
       setCurrentPage(prev => prev + 1);
     }
   };
-  console.log(startIndex);
 
   const handlePreviousPage = () => {
     if (currentPage > 1) {
