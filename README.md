@@ -15,14 +15,14 @@ BookSnap&copy; is a full-stack single page web application that allows users to 
 
 - Entity Relationship Diagram(EDR)
   ![alt text](public/BookSnapERD.png 'ERD')
-  - Simple user model for authentication
+  - Simple user model for athentication
   - Picked book model properties from raw data
 - Wire Frame
   ![alt text](public/BookSnapWF.png)
   - Landing page design & Wire frame page flows
   - Allowed user to search without login
   - My books page for logged in users
-- Research book APIs
+- Reaserch book APIs
   - candidates : Google Books API, GoodReads API, Amazon Books API
   - Chose Google book API for reliability and richness in data
 
@@ -42,7 +42,7 @@ BookSnap&copy; is a full-stack single page web application that allows users to 
 #### - Log-in System Build
 1. Basic sign up and log in UI build
 2. Created user model with minimal ID info
-3. User authentication process with JWT, bcrypt 
+3. User athentication process with JWT, bcrypt 
 #### - Search & Filter Function
 1. Picked up data from raw data
 2. Two options for search feature; dynamic search and regular
@@ -51,10 +51,9 @@ BookSnap&copy; is a full-stack single page web application that allows users to 
 
 28 Nov - 30 Nov
 #### Truble Shooting
-1. Limited requests to API
+1. Limitted requests to API
 - Deployed on Heroku(30 Nov)
 
-### 4. Presentation & Review
+### 4. Presentaion & Review
 
 1 Dec
-1. Presentation
