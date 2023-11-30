@@ -1,4 +1,3 @@
-import * as React from 'react';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
@@ -111,8 +110,7 @@ const BookSearchForm = ({  setStartIndex, query, setQuery ,fetchData, selectedSe
                 <MenuItem value={languages[2]}>French</MenuItem>
                 <MenuItem value={languages[3]}>Italian</MenuItem>
                 <MenuItem value={languages[4]}>Spanish</MenuItem>
-                <MenuItem value={languages[1]}>Chinese</MenuItem>
-                <MenuItem value={languages[1]}>German</MenuItem>
+                <MenuItem value={languages[5]}>German</MenuItem>
               </Select>
             </FormControl>
           </div>
@@ -131,6 +129,7 @@ const BookSearchForm = ({  setStartIndex, query, setQuery ,fetchData, selectedSe
                 label="Search..." 
                 type="search" 
                 value={query} 
+                required
                 onChange={_handleTitleChange}
                 placeholder={`Search by ${selectedSearchType === 'title' ? 'Title' : 'Author'}`}/>
             </div>
