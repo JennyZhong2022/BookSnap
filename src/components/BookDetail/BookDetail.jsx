@@ -23,6 +23,15 @@ const BookDetail = ({
     fontWeight: 'bolder',
     minWidth: '130px',
   };
+  const addedButtonStyle = {
+    backgroundColor: '#a13a3a',
+    color: 'white',
+    borderStyle: 'solid',
+    fontSize: '0.5em',
+    borderColor: '#fff2d8',
+    fontWeight: 'bolder',
+    minWidth: '130px',
+  };
 
   return (
     <>
@@ -73,7 +82,7 @@ const BookDetail = ({
                       <Button
                         onClick={handleAddToMyBooksButton}
                         disabled={hasBookBeenAdded}
-                        style={buttonStyle}
+                        style={addedButtonStyle}
                         variant="outlined"
                         startIcon={<ListIcon />}
                         size="small"
@@ -101,17 +110,17 @@ const BookDetail = ({
                   {volumeData.title}{' '}
                 </Typography>
               </div>
-              {volumeData.authors?.map(e => (
-                <Typography
-                  key={uuid()}
-                  variant="body1"
-                  component="p"
-                  fontStyle="italic"
-                  style={{ marginTop: '8px', marginBottom: '10px' }}
-                >
-                  By {e}
-                </Typography>
-              ))}{' '}
+              <Typography
+                key={uuid()}
+                variant="body1"
+                component="p"
+                fontStyle="italic"
+                style={{ marginTop: '8px', marginBottom: '10px' }}
+              >By{' '} 
+                {volumeData.authors?.map(e => (
+                  <span key={uuid}>{e}</span>
+                ))}
+              </Typography>{' '}
               <Typography>Published: {volumeData.publishedDate}</Typography>
               <Typography style={{ textAlign: 'justify' }}>
                 <span style={{ width: '100%', height: '50%' }}>
