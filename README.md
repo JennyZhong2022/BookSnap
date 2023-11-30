@@ -1,6 +1,6 @@
 # BookSnap
 
-Book Explorer is a web application that allows users to search for books using the Google Books API. Users can search by title, author, category, or language, and navigate through the search results using a pagination system.
+BookSnap is a web application that allows users to search for books using the Google Books API. Users can search by title, author, category, or language, and navigate through the search results using a pagination system.
 
 ## Features
 
