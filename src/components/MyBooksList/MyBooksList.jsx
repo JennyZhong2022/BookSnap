@@ -1,12 +1,7 @@
 import { useEffect, useState } from 'react';
 import MyBooksListItem from '../MyBooksListItem/MyBooksListItem';
-import SearchIcon from '@mui/icons-material/Search';
-import Box from '@mui/material/Box';
+import './MyBooksList.css';
 import TextField from '@mui/material/TextField';
-import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
-
-import './MyBooksList.css'
 
 const MyBooksList = ({ myBooks, onDeleteBook }) => {
   const [searchTerm, setSearchTerm] = useState('');
@@ -17,26 +12,19 @@ const MyBooksList = ({ myBooks, onDeleteBook }) => {
     setFilteredBooks(myBooks);
   }, [myBooks]);
 
-
-
   const _handleMyBookSearchInput = (e) => {
-    setSearchTerm(e.target.value);
-  };
+    const input = e.target.value.toLowerCase();
 
-  const _handleMyBookSearch = (e) => {
-    e.preventDefault();
+    setSearchTerm(input);
 
-    // Check if search term is empty and reset the filteredBooks to myBooks
-    if (!searchTerm.trim()) {
+    if (!input.trim()) {
       setFilteredBooks(myBooks);
-      return;
+    } else {
+      const filtered = myBooks.filter((myBook) =>
+        myBook.title?.toLowerCase().includes(input)
+      );
+      setFilteredBooks(filtered);
     }
-
-    const filtered = myBooks.filter(myBook => 
-      myBook.title?.toLowerCase().includes(searchTerm.toLowerCase())
-    );
-
-    setFilteredBooks(filtered);
   };
 
 
@@ -51,49 +39,35 @@ const MyBooksList = ({ myBooks, onDeleteBook }) => {
 
 
   return (
-    <>
-      <div className='mybooks-search'>
-        <form onSubmit={_handleMyBookSearch} >
-          <div style={{ display: 'inline-flex', justifyContent: 'space-between', padding: '1rem',  borderRadius: '1%' }} >
-            <Box
-              component="form"
-              sx={{
-                '& .MuiTextField-root': { m: 2, width: '35ch' },
-              }}
-              noValidate
-              autoComplete="off"
-            >
-              <div className="search-field" >
-                <TextField 
-                    id="outlined-search" 
-                    label="Search for book title" 
-                    type="search" 
-                    onChange={_handleMyBookSearchInput}
-                    placeholder="Search for book title"
-                />
-              </div>
-            </Box>
-
-            <div className="submit-button" >
-              <Button variant="contained" style={buttonStyles} type="submit" startIcon={<SearchIcon />}>
-                Search
-              </Button>
-            </div>
-          </div>
-        </form>
-      </div> 
-      <div className='books-container'>
-        <div className="total-books">
-          <Typography variant="h6" component="span">
-            My Total Books: {myBooks.length}
-          </Typography>
-        </div>
-
-      {filteredBooks.map((book) => (
-        <MyBooksListItem key={book._id} book={book} onDeleteBook={onDeleteBook} />
-      ))}
+    <div className="main-container">
+      <TextField
+        type="search"
+        onChange={_handleMyBookSearchInput}
+        label="🔎 Search for book title "
+        variant="outlined"
+        fullWidth
+        margin="normal"
+        sx={{
+          '& fieldset': {
+            borderColor: '#000', 
+            borderWidth: '2px', 
+          },
+          '& label': {
+            color: '#000', 
+            pl: 8
+          },
+          mb: 3,
+          pl: 6,
+          pr: 1,
+        }}
+      />
+      <h4>My Total Books: {myBooks.length}</h4>
+      <div className="books-container">
+        {filteredBooks.map((book) => (
+          <MyBooksListItem key={book._id} book={book} onDeleteBook={onDeleteBook} />
+        ))}
+      </div>
     </div>
-    </>
   );
 };
 

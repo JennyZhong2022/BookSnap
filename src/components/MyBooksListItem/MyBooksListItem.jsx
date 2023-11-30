@@ -80,6 +80,7 @@ const MyBooksListItem = ({ book, onDeleteBook }) => {
       <Grid
         container
         spacing={2}
+        className="hover-grid" 
         style={{
           borderRadius: '5px',
           margin: '1em',

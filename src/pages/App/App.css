@@ -6,6 +6,9 @@
   background-color: #113946;
 }
 .App {
-  width: 100%;
-  padding: 1rem;
+  padding: 1rem 10rem;
+}
+.web-container {
+  height: 100svh;
+  overflow: hidden;
 }
