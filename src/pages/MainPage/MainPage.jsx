@@ -28,9 +28,9 @@ const MainPage = ({ user }) => {
     French: 'fr',
     Italian: 'it',
     Spanish: 'es',
-    German: 'de',
+    German: 'de',  // Corrected code for German
   };
-
+  
   // useCallback to match useEffect
   // useCallback is used to memoize the fetchData function.
   // useEffect depends on fetchData. Without useCallback, fetchData would be re-created on every render, leading to useEffect being triggered more often than necessary.

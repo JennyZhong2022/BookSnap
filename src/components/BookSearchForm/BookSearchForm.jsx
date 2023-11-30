@@ -173,11 +173,52 @@ const BookSearchForm = ({
                 <MenuItem value={languages[2]}>French</MenuItem>
                 <MenuItem value={languages[3]}>Italian</MenuItem>
                 <MenuItem value={languages[4]}>Spanish</MenuItem>
-                <MenuItem value={languages[1]}>Chinese</MenuItem>
-                <MenuItem value={languages[1]}>German</MenuItem>
+                <MenuItem value={languages[5]}>German</MenuItem>
               </Select>
             </FormControl>
           </div>
+
+          <Box
+          component="form"
+          sx={{
+            '& .MuiTextField-root': { m: 2, width: '35ch' },
+          }}
+          noValidate
+          autoComplete="off"
+          onSubmit={handleSubmit}
+          >
+            <div className="search-field" >
+              <TextField 
+                id="outlined-search" 
+                label="Search..." 
+                type="search" 
+                value={query} 
+                required
+                onChange={_handleTitleChange}
+                placeholder={`Search by ${selectedSearchType === 'title' ? 'Title' : 'Author'}`}/>
+            </div>
+          </Box>
+          <div className="search-type-container" >
+            <FormControl fullWidth>
+              <InputLabel id="demo-simple-select-label"></InputLabel>
+              <Select
+                labelId="demo-simple-select-label"
+                id="demo-simple-select"
+                value={selectedSearchType}
+                label=""
+                onChange={_handleSearchTypeChange}
+              >
+                <MenuItem value="">
+                </MenuItem>
+                <MenuItem value="title">Title</MenuItem>
+                <MenuItem value="author">Author</MenuItem>
+              </Select>
+        </FormControl>
+      </div>
+        <div className="submit-button">
+          <Button variant="contained" style={buttonStyles} type="submit" startIcon={<SearchIcon />}>
+            Search
+          </Button>
         </div>
       </form>
     </div>
