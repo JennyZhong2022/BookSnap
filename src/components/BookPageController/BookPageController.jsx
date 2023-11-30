@@ -6,11 +6,10 @@ const BookPageController = ({handlePreviousPage,
   setStartIndex,
 }) => {
 
-  console.log('Current Page:', currentPage, 'Max Pages:', maxPages);
+  // console.log('Current Page:', currentPage, 'Max Pages:', maxPages);
 
   const handleCurrentPageChange = e => {
     const newPage = Number(e.target.value);
-    console.log(newPage);
     setCurrentPage(newPage);
     setStartIndex((newPage - 1) * 10);
   };

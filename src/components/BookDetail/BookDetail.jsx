@@ -55,7 +55,21 @@ const BookDetail = ({
                 />
                 <div>
                   <h2 style={{ padding: '1em 0 0 0' }}>
-                    {user && hasBookBeenAdded ? (
+                    {!user && (
+                      <span
+                        style={{
+                          fontSize: '12px',
+                          border: '2px solid black',
+                          padding: '5px',
+                          borderRadius: '10px',
+                          backgroundColor: '#fff2d8',
+                        }}
+                      >
+                        Please <Link to="/api/user">login</Link> to add this
+                        book
+                      </span>
+                    )}
+                    {user && hasBookBeenAdded && (
                       <Button
                         onClick={handleAddToMyBooksButton}
                         disabled={hasBookBeenAdded}
@@ -66,7 +80,8 @@ const BookDetail = ({
                       >
                         Book Is Added
                       </Button>
-                    ) : (
+                    )}
+                    {user && !hasBookBeenAdded && (
                       <Button
                         onClick={handleAddToMyBooksButton}
                         disabled={bookData.addedToMyBooks}
@@ -75,25 +90,8 @@ const BookDetail = ({
                         startIcon={<ListIcon />}
                         size="small"
                       >
-                        Add to MyBooks
+                        Add to My Books
                       </Button>
-                    )}
-
-                    {!user && (
-                      <div>
-                        <span
-                          style={{
-                            fontSize: '12px',
-                            border: '2px solid black',
-                            padding: '5px',
-                            borderRadius: '10px',
-                            backgroundColor: '#fff2d8',
-                          }}
-                        >
-                          Please <Link to="/api/user">login</Link> to add this
-                          book
-                        </span>
-                      </div>
                     )}
                   </h2>
                 </div>
