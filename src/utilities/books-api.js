@@ -12,3 +12,7 @@ export async function getMyBooksList (booksData) {
 export async function deleteMyBooksListItem (bookId) {
     return sendRequest(`${BASE_URL}/${bookId}`, 'DELETE');
 }
+
+export async function getIds () {
+    return sendRequest(`${BASE_URL}/bookIds`);
+}

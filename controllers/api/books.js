@@ -32,9 +32,21 @@ const deleteBook = async (req, res) => {
 
 }
 
+const getIds = async (req, res) => {
+  try {
+    const user = await User.findById(req.user?._id).populate('mybooks').exec();
+    // Extracting bookIds from the mybooks array
+    const bookIds = user.mybooks.map(book => book.bookId);
+    res.json(bookIds);
+  } catch (err) {
+    res.status(400).json(err);
+  }
+}
+
 
 module.exports = {
   index,
   create,
   delete: deleteBook,
+  getIds
 }

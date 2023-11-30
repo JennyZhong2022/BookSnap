@@ -7,7 +7,16 @@
 
 BookSnap&copy; is a full-stack single page web application that allows users to search books using the Google Books API. Users can search for books, add them to their collection, and manage their reading list.
 
-## Timelines as agile method
+### Features
+
+- Search books by title or author
+- Filter books by categories and languages
+- View detailed information about each book
+- Pagination to navigate through search results
+- Add books to MyBooks(book collection)
+- Personal notes on the book
+
+## Timeline as agile method
 
 ### 1. Plan
 
@@ -15,10 +24,10 @@ BookSnap&copy; is a full-stack single page web application that allows users to 
 
 - Entity Relationship Diagram(EDR)
   ![alt text](public/BookSnapERD.png 'ERD')
-  - Simple user model for athentication
+  - Chose a simple user model for athentication
   - Picked book model properties from raw data
 - Wire Frame
-  ![alt text](public/BookSnapWF.png)
+  ![alt text](public/BookSnapWF.png 'WF')
   - Landing page design & Wire frame page flows
   - Allowed user to search without login
   - My books page for logged in users
@@ -32,56 +41,57 @@ BookSnap&copy; is a full-stack single page web application that allows users to 
 
 #### Technologies
 
-|                     |              Technologies              |   Libraries |
-| ------------------- | :------------------------------------: | ----------: |
+|                     |                Technologies                 |   Libraries |
+| ------------------- | :-----------------------------------------: | ----------: |
 | Client              | ReactJS 18, Google Books Wep Api, HTML5/CSS | Material UI |
-| Server              |            ExpressJS, NodeJS,            | JWT, Bcrypt |
-| Data Solution       |                MongoDB                 |    Mongoose |
-| VSC & Communication |           Github/Git, Trello           |             |
+| Server              |             ExpressJS, NodeJS,              | JWT, Bcrypt |
+| Data Solution       |                   MongoDB                   |    Mongoose |
+| VCS & Communication |             Github/Git, Trello              |             |
 
 #### - Log-in System Build
+
 1. Basic sign up and log in UI build
 2. Created user model with minimal ID info
-3. User athentication process with JWT, bcrypt 
+3. User authentication process with JWT, bcrypt
+
 #### - Search & Filter Function
-1. Picked up data from raw data
-2. Two options for search feature; dynamic search and regular
+
+1. Picked up data from the raw data
+2. Two options for search bar; a dynamic(responsive to keywords) / conventional
+3. Coded logic of search/filter options: by title, languages, categories
+4. Search results page navigation
+
+#### - Add books to MyBooks
+1. Create a document of user model from data fetched
+
+#### - MyBooks(book collection) page build
+
+1. Built basic UI/UX and applied Material-UI
+2. Store book data to our DB
+3. Delete a book from the collection
+4. Add & delete notes
 
 ### 3. Test & Deploy
 
 28 Nov - 30 Nov
-#### Truble Shooting
-1. Limitted requests to API
-- Deployed on Heroku(30 Nov)
+
+#### Challenges & Trouble Shootings
+
+- Since limitted requests to API, chose a conventional search bar for reliability
+- Simplified filter functions because of too many conditions for API endpoint causing error
+
+
+- **Deployed on Heroku(30 Nov)**
 
 ### 4. Presentaion & Review
 
 1 Dec
 
-
-
-
 ---
+
 # BookSnap
 
-BookSnap is a web application that allows users to search for books using the Google Books API. Users can search by title, author, category, or language, and navigate through the search results using a pagination system.
-
-## Features
-
-- Search for books by title or author.
-- Filter books by category and language.
-- View detailed information about each book.
-- Pagination to navigate through search results.
-- Add books to my book list
-- Comment on the book
-
-## Technologies Used
-
-- React with Vite
-- JavaScript (ES6+)
-- HTML5 & CSS3
-- Material-UI
-- Google Books API
+BookSnap is a web application that allows users to search for books using the Google Books API. 
 
 ## Components
 

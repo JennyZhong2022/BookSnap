@@ -19,7 +19,7 @@ export default function App() {
       {
         <>
           <Routes>
-            <Route path="/" element={<MainPage />} />
+            <Route path="/" element={<MainPage user={user} />} />
             {user && (
               <>
                 <Route path="/mybooks" element={<MyBooksPage />} />
