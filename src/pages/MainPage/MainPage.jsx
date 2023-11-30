@@ -88,8 +88,10 @@ const MainPage = ({ user }) => {
 
   const handleDetailButton = async bookId => {
     const bookData = booksData?.filter(book => book.id === bookId)[0];
-    const bookIds = await booksAPI.getIds();
-    setGoogleBookIds(bookIds);
+    if(user) {
+      const bookIds = await booksAPI.getIds();
+      setGoogleBookIds(bookIds);
+    }
     setBookData(bookData);
   };
 
