@@ -1,6 +1,4 @@
 
-
-
 const categories = [
   'Art',
   'Biography',
@@ -22,8 +20,6 @@ const languages = [
 ];
 
 const BookSearchForm = ({  setStartIndex, query, setQuery ,fetchData, selectedSearchType,setSelectedSearchType,setCurrentPage,category, setCategory,language,setLanguage}) => {
-
-  
 
 
   const _handleTitleChange = (event) => {
@@ -53,22 +49,8 @@ const BookSearchForm = ({  setStartIndex, query, setQuery ,fetchData, selectedSe
 
   
   
-
-  
-  
   return (
     <div className="BookSearchForm" style={{border: "1px solid black"}}>
- 
-      
-
-  
-       
-   
-
-      
-
-     
-      
        
        <form onSubmit={handleSubmit} >
         <input 
@@ -101,9 +83,10 @@ const BookSearchForm = ({  setStartIndex, query, setQuery ,fetchData, selectedSe
         <button type="submit">Search</button>
         </form>
       </div>  
-      
-  
+     
   );
 };
 
 export default BookSearchForm;
+
+

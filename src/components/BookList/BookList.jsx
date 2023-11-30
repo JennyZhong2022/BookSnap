@@ -1,22 +1,21 @@
 import BookListItem from '../BookListItem/BookListItem';
 import './BookList.css';
 
-const bookList = ({
+const BookList = ({
   booksData,
   handleDetailButton,
   
 }) => {
   
-
   return (
-    <div style={{ margin: '100px' }}>
+    <div >
       {/* <div>
         {booksData && (
           
         )}
       </div> */}
 
-      <ul>
+      <div className='booksList-container'>
         {booksData?.map(bookData => (
           <div key={bookData.id} className="search-item">
             <BookListItem
@@ -25,9 +24,12 @@ const bookList = ({
             />
           </div>
         ))}
-      </ul>
+      </div>
     </div>
   );
 };
 
-export default bookList;
+export default BookList;
+
+
+

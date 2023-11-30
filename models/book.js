@@ -17,6 +17,9 @@ const bookSchema = new Schema({
   publishedDate: {
     type: String,
   },
+  description: {
+    type: String,
+  },
   bookId: {
     type: String,
   },

@@ -6,6 +6,10 @@ import { useCallback, useEffect, useState } from 'react';
 import * as booksAPI from '../../utilities/books-api';
 import './MainPage.css';
 import BookPageController from '../../components/BookPageController/BookPageController';
+import Typography from '@mui/material/Typography';
+import Box from '@mui/material/Box';
+import Grid from '@mui/material/Grid';
+
 
 
 const APIKey = import.meta.env.VITE_BOOK_API_KEY;
@@ -21,6 +25,29 @@ const MainPage = () => {
   const [startIndex, setStartIndex] = useState(0);
   const [currentPage, setCurrentPage] = useState(1);
   const [selectedSearchType, setSelectedSearchType] = useState('title');
+  // const [categories, setCategories] = useState([]);
+  // const [selectedCategory, setSelectedCategory] = useState('');
+
+
+
+
+  useEffect(() => {
+    // Initial fetch to get all books and categories
+    const fetchAllBooks = async () => {
+      const alphabet = 'abcdefghijklmnopqrstuvwxyz';
+      const randomLetter = alphabet[Math. floor(Math. random() * alphabet. length)]; 
+      console.log(randomLetter)
+      const rawData = await fetch(
+        `https://www.googleapis.com/books/v1/volumes?q=${randomLetter}&langRestrict=en&maxResults=10&startIndex=${startIndex}&key=${APIKey}`
+      ).then((res) => res.json());
+      const data = rawData.items || [];
+      setBooksData(data);
+        console.log(data)
+        };
+        fetchAllBooks();
+      }, [startIndex]);
+
+
 
   const languageCodes = {
     'English': 'en',
@@ -121,6 +148,7 @@ const MainPage = () => {
       authors: bookInfo.authors,
       image: bookInfo.imageLinks.thumbnail,
       publishDate: bookInfo.publishDate,
+      description: bookInfo.description,
       bookId: bookData.id,
       note: '',
     };
@@ -145,8 +173,6 @@ const MainPage = () => {
     }
   };
 
-  
-
   return (
     <div>
       <BookSearch
@@ -165,8 +191,9 @@ const MainPage = () => {
         selectedSearchType={selectedSearchType}
         setSelectedSearchType={setSelectedSearchType}
         setCurrentPage={setCurrentPage}
+        handleCategoryChange={handleCategoryChange}
       />
-      <div style={{ display: 'flex' }}>
+      <div >
         {!booksData && <div>No result</div>}
         {/* <BookCategory onCategoryChange={handleCategoryChange} /> */}
         {booksData && <BookPageController
@@ -176,24 +203,36 @@ const MainPage = () => {
            currentPage={currentPage}
            setCurrentPage={setCurrentPage}
            maxPages={maxPages}/>} 
-        <div className="search-list-container">
-        <BookList
-          booksData={filteredBooksData || booksData}
-          handleDetailButton={handleDetailButton}
-         
-        />
-      </div>
-      <div className="book-detail-container">
-        <BookDetail
-          bookData={filteredBooksData || bookData}
-          handleAddToMyBooksButton={handleAddToMyBooksButton}
-        />
-      </div>
 
-
-        </div>
+        <Box xs={{ flexGrow: 1 }}>
+          <Grid container spacing={4} columns={16}>
+            <Grid item xs={2}>
+            </Grid>
+            <Grid item xs={7}>
+              <div className="search-list-container">
+                <BookList
+                  booksData={filteredBooksData || booksData}
+                  handleDetailButton={handleDetailButton}        
+                />
+              </div>
+            </Grid>
+            <Grid item xs={7}>
+              <div className="book-detail-container">
+                <BookDetail
+                  bookData={filteredBooksData || bookData}
+                  handleAddToMyBooksButton={handleAddToMyBooksButton}
+                />
+              </div>
+            </Grid>
+            <Grid item xs>
+            </Grid>
+          </Grid> 
+        </Box>
+      </div>
     </div>
   );
 };
 
 export default MainPage;
+
+
