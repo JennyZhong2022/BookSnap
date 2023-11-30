@@ -6,6 +6,7 @@ const BookPageController = ({handlePreviousPage,
   setStartIndex,
 }) => {
 
+  console.log('Current Page:', currentPage, 'Max Pages:', maxPages);
 
   const handleCurrentPageChange = e => {
     const newPage = Number(e.target.value);
@@ -13,6 +14,7 @@ const BookPageController = ({handlePreviousPage,
     setCurrentPage(newPage);
     setStartIndex((newPage - 1) * 10);
   };
+  
   return (
     <div>
     <button onClick={handlePreviousPage} disabled={currentPage === 1}>

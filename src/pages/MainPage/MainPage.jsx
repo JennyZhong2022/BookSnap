@@ -6,7 +6,7 @@ import { useCallback, useEffect, useState } from 'react';
 import * as booksAPI from '../../utilities/books-api';
 import './MainPage.css';
 import BookPageController from '../../components/BookPageController/BookPageController';
-import Typography from '@mui/material/Typography';
+// import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 
@@ -31,21 +31,21 @@ const MainPage = () => {
 
 
 
-  useEffect(() => {
-    // Initial fetch to get all books and categories
-    const fetchAllBooks = async () => {
-      const alphabet = 'abcdefghijklmnopqrstuvwxyz';
-      const randomLetter = alphabet[Math. floor(Math. random() * alphabet. length)]; 
-      console.log(randomLetter)
-      const rawData = await fetch(
-        `https://www.googleapis.com/books/v1/volumes?q=${randomLetter}&langRestrict=en&maxResults=10&startIndex=${startIndex}&key=${APIKey}`
-      ).then((res) => res.json());
-      const data = rawData.items || [];
-      setBooksData(data);
-        console.log(data)
-        };
-        fetchAllBooks();
-      }, [startIndex]);
+  // useEffect(() => {
+  //   // Initial fetch to get all books and categories
+  //   const fetchAllBooks = async () => {
+  //     const alphabet = 'abcdefghijklmnopqrstuvwxyz';
+  //     const randomLetter = alphabet[Math. floor(Math. random() * alphabet. length)]; 
+  //     console.log(randomLetter)
+  //     const rawData = await fetch(
+  //       `https://www.googleapis.com/books/v1/volumes?q=${randomLetter}&langRestrict=en&maxResults=10&startIndex=${startIndex}&key=${APIKey}`
+  //     ).then((res) => res.json());
+  //     const data = rawData.items || [];
+  //     setBooksData(data);
+  //       console.log(data)
+  //       };
+  //       fetchAllBooks();
+  //     }, [startIndex]);
 
 
 
@@ -63,43 +63,35 @@ const MainPage = () => {
   // useCallback is used to memoize the fetchData function.
   // useEffect depends on fetchData. Without useCallback, fetchData would be re-created on every render, leading to useEffect being triggered more often than necessary.
   const fetchData = useCallback(
-    async(query, searchType, category,language) => {
+    async (query, searchType, category, language) => {
       let url = `https://www.googleapis.com/books/v1/volumes?maxResults=10&startIndex=${startIndex}&key=${APIKey}`;
       if (searchType === 'author') {
         // encodeURIComponent is used to encode a part of a URL, typically the query string, to ensure that it is properly formatted and does not contain any characters that could break the URL.
         url += `&q=inauthor:${encodeURIComponent(query)}`;
-      } else {
-        url += `&q=${encodeURIComponent(query)}`;
-      }
-      if (category ) {
-        url += `+subject:${encodeURIComponent(category)}`;
-      }
+    } else {
+      url += `&q=${encodeURIComponent(query)}`;
+    }
 
-      if (language && language !== 'All') {
-        const languageCode = languageCodes[language];
-        url += `&langRestrict=${encodeURIComponent(languageCode)}`;
-      }
-      
-  
+    if (category && category !== 'All') {
+      url += `+subject:${encodeURIComponent(category)}`;
+    }
 
-      try {
-        const rawData = await fetch(url).then(res => res.json());
-        const data = rawData.items;
-        setBooksData(data);
-        console.log(data);
-        // booksData.forEach(book => {
-        //   const title = book.volumeInfo.title;
-        //   const categories = book.volumeInfo.categories || ['No categories available'];
-        //   console.log(`Title: ${title}, Categories: ${categories.join(', ')}`);
-        // });
-       
-      } catch (error) {
-        console.error('Error fetching data:', error);
-        // Handle error
-      }
-    },
-    [startIndex]
-  );
+    if (language && language !== 'All') {
+      const languageCode = languageCodes[language];
+      url += `&langRestrict=${encodeURIComponent(languageCode)}`;
+    }
+
+    try {
+      const rawData = await fetch(url).then(res => res.json());
+      const data = rawData.items || []; // Handle no results
+      setBooksData(data);
+      console.log(data);
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    }
+  },
+  [startIndex] // Include other dependencies if necessary
+);
 
   useEffect(() => {
     if (query) {
@@ -191,11 +183,12 @@ const MainPage = () => {
         selectedSearchType={selectedSearchType}
         setSelectedSearchType={setSelectedSearchType}
         setCurrentPage={setCurrentPage}
-        handleCategoryChange={handleCategoryChange}
+        // handleCategoryChange={handleCategoryChange}
       />
       <div >
         {!booksData && <div>No result</div>}
         {/* <BookCategory onCategoryChange={handleCategoryChange} /> */}
+        <br />
         {booksData && <BookPageController
            handlePreviousPage={handlePreviousPage}
            handleNextPage={handleNextPage}
