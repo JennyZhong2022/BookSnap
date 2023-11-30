@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import MyBooksListItem from '../MyBooksListItem/MyBooksListItem';
-import './MyBooksList.css'
+import './MyBooksList.css';
+import TextField from '@mui/material/TextField';
 
 const MyBooksList = ({ myBooks, onDeleteBook }) => {
   const [searchTerm, setSearchTerm] = useState('');
@@ -11,43 +12,50 @@ const MyBooksList = ({ myBooks, onDeleteBook }) => {
     setFilteredBooks(myBooks);
   }, [myBooks]);
 
-
-
   const _handleMyBookSearchInput = (e) => {
-    setSearchTerm(e.target.value);
-  };
+    const input = e.target.value.toLowerCase();
 
-  const _handleMyBookSearch = (e) => {
-    e.preventDefault();
+    setSearchTerm(input);
 
-    // Check if search term is empty and reset the filteredBooks to myBooks
-    if (!searchTerm.trim()) {
+    if (!input.trim()) {
       setFilteredBooks(myBooks);
-      return;
+    } else {
+      const filtered = myBooks.filter((myBook) =>
+        myBook.title?.toLowerCase().includes(input)
+      );
+      setFilteredBooks(filtered);
     }
-
-    const filtered = myBooks.filter(myBook => 
-      myBook.title?.toLowerCase().includes(searchTerm.toLowerCase())
-    );
-
-    setFilteredBooks(filtered);
   };
 
   return (
-    <div className='books-container'>
-      <form onSubmit={_handleMyBookSearch}>
-        <input type="search" onChange={_handleMyBookSearchInput} placeholder='Search for book title' />
-        <button>Search my books</button>
-      </form>
-    
-      
-      <h2>My Total Books: {myBooks.length}</h2>
-      
-
-
-      {filteredBooks.map((book) => (
-        <MyBooksListItem key={book._id} book={book} onDeleteBook={onDeleteBook} />
-      ))}
+    <div className="main-container">
+      <TextField
+        type="search"
+        onChange={_handleMyBookSearchInput}
+        label="🔎 Search for book title "
+        variant="outlined"
+        fullWidth
+        margin="normal"
+        sx={{
+          '& fieldset': {
+            borderColor: '#000', 
+            borderWidth: '2px', 
+          },
+          '& label': {
+            color: '#000', 
+            pl: 8
+          },
+          mb: 3,
+          pl: 6,
+          pr: 1,
+        }}
+      />
+      <h4>My Total Books: {myBooks.length}</h4>
+      <div className="books-container">
+        {filteredBooks.map((book) => (
+          <MyBooksListItem key={book._id} book={book} onDeleteBook={onDeleteBook} />
+        ))}
+      </div>
     </div>
   );
 };
