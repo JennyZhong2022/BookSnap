@@ -42,6 +42,7 @@ const BookDetail = ({
           padding: '1em',
           justifyContent: 'center',
           backgroundColor: '#ead7bb',
+          
         }}
       >
         <div
@@ -122,7 +123,7 @@ const BookDetail = ({
                 ))}
               </Typography>{' '}
               <Typography>Published: {volumeData.publishedDate}</Typography>
-              <Typography style={{ textAlign: 'justify' }}>
+              <Typography style={{ textAlign: 'justify'}} sx={{ pr: '5vw' }}>
                 <span style={{ width: '100%', height: '50%' }}>
                   {volumeData.description}
                 </span>

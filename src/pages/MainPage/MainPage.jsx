@@ -158,7 +158,7 @@ const MainPage = ({ user }) => {
           />
         )}
 
-<div style={{ padding: "5rem" }}>
+<div style={{ padding: "0 5rem" }}>
         <Box xs={{ flexGrow: 1 }}>
           <Grid container columns={16}>
             <Grid item xs={1}>
@@ -181,7 +181,7 @@ const MainPage = ({ user }) => {
                 />
               </div>
             </Grid>
-            <Grid item xs></Grid>
+            {/* <Grid item xs></Grid> */}
           </Grid>
         </Box>
         </div>
