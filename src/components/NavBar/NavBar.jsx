@@ -81,7 +81,7 @@ export default function NavBar({ user, setUser }) {
                   sx={{ flexGrow: 1, marginRight: 4 }}
                   color="white"
                 >
-                  Home
+                  📚 BookSnap
                 </Typography>
               </Link>
               <Link to="/api/user" className="link" style={{ textDecoration: 'none' }}>

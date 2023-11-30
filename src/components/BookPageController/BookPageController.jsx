@@ -36,42 +36,26 @@ const BookPageController = ({ handlePreviousPage,
   
 
   return (
-    <div>
-    <Grid container justifyContent="center" alignItems="center" spacing={2}>
-      <Grid item>
-        <Button
-          style={buttonStyles}
-          onClick={handlePreviousPage}
-          disabled={currentPage === 1}
-        >
-          Previous Page
-        </Button>
-      </Grid>
-      <Grid item>
-        <Select
-          labelId="demo-simple-select-label"
-          id="demo-simple-select"
-          value={currentPage}
-          onChange={handleCurrentPageChange}
-          sx={{ minWidth: '10px', minHeight: '35px' }}
-        >
-          {Array.from({ length: maxPages }, (_, i) => (
-            <MenuItem key={i + 1} value={i + 1}>
-              {i + 1}
-            </MenuItem>
-          ))}
-        </Select>
-      </Grid>
-      <Grid item>
-        <Button
-          style={buttonStyles}
-          onClick={handleNextPage}
-          disabled={currentPage === maxPages}
-        >
-          Next Page
-        </Button>
-      </Grid>
-    </Grid>
+
+    <div style={{paddingLeft: '10rem'}}>
+    <button onClick={handlePreviousPage} disabled={currentPage === 1}>
+      Previous Page
+    </button>
+    <select value={currentPage} onChange={handleCurrentPageChange}>
+      {Array.from({ length: maxPages }, (_, i) => (
+        <option key={i + 1} value={i + 1}>
+          {i + 1}
+        </option>
+      ))}
+    </select>
+    <button
+      onClick={handleNextPage}
+      disabled={currentPage === maxPages}
+    >
+      Next Page
+    </button>
+
+  
   </div>
   )
 }

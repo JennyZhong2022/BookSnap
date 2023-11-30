@@ -27,49 +27,112 @@ const languages = [
   'German',
 ];
 
-const BookSearchForm = ({  setStartIndex, query, setQuery ,fetchData, selectedSearchType,setSelectedSearchType,setCurrentPage,category, setCategory,language,setLanguage}) => {
-
-
-  const _handleTitleChange = (event) => {
+const BookSearchForm = ({
+  setStartIndex,
+  query,
+  setQuery,
+  fetchData,
+  selectedSearchType,
+  setSelectedSearchType,
+  setCurrentPage,
+  category,
+  setCategory,
+  language,
+  setLanguage,
+}) => {
+  const _handleTitleChange = event => {
     setQuery(event.target.value);
-  }
-
-  const _handleSearchTypeChange = (event) => {
-    setSelectedSearchType(event.target.value);
-  }
-
-  const _handleCategoryChange = (event) => {
-    setCategory(event.target.value)
-  }
-
-  const _handleLanguageChange = (event) => {
-    setLanguage(event.target.value);
-    console.log("Selected Language:", event.target.value); // Debugging
   };
-  
 
-  const handleSubmit = (event) => {
+  const _handleSearchTypeChange = event => {
+    setSelectedSearchType(event.target.value);
+  };
+
+  const _handleCategoryChange = event => {
+    setCategory(event.target.value);
+  };
+
+  const _handleLanguageChange = event => {
+    setLanguage(event.target.value);
+    console.log('Selected Language:', event.target.value); // Debugging
+  };
+
+  const handleSubmit = event => {
     event.preventDefault();
-    fetchData(query, selectedSearchType, category,language);
-    setStartIndex(0)
-    setCurrentPage(1)
-  }
+    fetchData(query, selectedSearchType, category, language);
+    setStartIndex(0);
+    setCurrentPage(1);
+  };
 
-  
   const buttonStyles = {
     backgroundColor: '#113946',
     color: 'white',
     fontSize: '1em',
     fontWeight: 'bolder',
-    minWidth: '130px',
-    minHeight: '55px'
+    minWidth: '1em',
+    minHeight: '55px',
   };
-  
+
   return (
-    <div className="BookSearchForm" >
-       <form onSubmit={handleSubmit} >
-        <div style={{ display: 'inline-flex', justifyContent: 'space-between', columns: '10',  padding: '1rem', borderRadius: '1%' }} >
-          <div className="categories-container" >
+    <div className="BookSearchForm">
+      <form onSubmit={handleSubmit}>
+        <div
+          style={{
+            display: 'inline-flex',
+            justifyContent: 'space-between',
+            columns: '10',
+            padding: '1rem',
+            borderRadius: '1%',
+          }}
+        >
+          <Box
+            component="form"
+            sx={{
+              '& .MuiTextField-root': { m: 2, width: '38ch' },
+            }}
+            noValidate
+            autoComplete="off"
+            onSubmit={handleSubmit}
+          >
+            <div className="search-field">
+              <TextField
+                id="outlined-search"
+                label="Search..."
+                type="search"
+                value={query}
+                onChange={_handleTitleChange}
+                placeholder={`Search by ${
+                  selectedSearchType === 'title' ? 'Title' : 'Author'
+                }`}
+              />
+            </div>
+          </Box>
+          <div className="submit-button">
+            <Button
+              variant="contained"
+              style={buttonStyles}
+              type="submit"
+              startIcon={<SearchIcon />}
+            />
+          </div>
+          <div className="search-type-container">
+            <FormControl fullWidth>
+              <InputLabel id="demo-simple-select-label"></InputLabel>
+              <Select
+                labelId="demo-simple-select-label"
+                id="demo-simple-select"
+                value={selectedSearchType}
+                label=""
+                onChange={_handleSearchTypeChange}
+              >
+                <MenuItem value=""></MenuItem>
+                <MenuItem value="title">Title</MenuItem>
+                <MenuItem value="author">Author</MenuItem>
+              </Select>
+            </FormControl>
+          </div>
+
+          <div className="categories-container">
             <FormControl fullWidth>
               <InputLabel id="demo-simple-select-label">Categories</InputLabel>
               <Select
@@ -80,7 +143,7 @@ const BookSearchForm = ({  setStartIndex, query, setQuery ,fetchData, selectedSe
                 onChange={_handleCategoryChange}
               >
                 <MenuItem value="">
-                  <em>Categories</em> 
+                  <em>Categories</em>
                 </MenuItem>
                 <MenuItem value={categories[0]}>Art</MenuItem>
                 <MenuItem value={categories[1]}>Biography</MenuItem>
@@ -103,7 +166,7 @@ const BookSearchForm = ({  setStartIndex, query, setQuery ,fetchData, selectedSe
                 onChange={_handleLanguageChange}
               >
                 <MenuItem value="">
-                  <em>Languages</em> 
+                  <em>Languages</em>
                 </MenuItem>
                 <MenuItem value={languages[0]}>English</MenuItem>
                 <MenuItem value={languages[1]}>Korean</MenuItem>
@@ -114,6 +177,7 @@ const BookSearchForm = ({  setStartIndex, query, setQuery ,fetchData, selectedSe
               </Select>
             </FormControl>
           </div>
+
           <Box
           component="form"
           sx={{
@@ -156,13 +220,9 @@ const BookSearchForm = ({  setStartIndex, query, setQuery ,fetchData, selectedSe
             Search
           </Button>
         </div>
-      </div>
-    </form>
-  </div>  
-     
+      </form>
+    </div>
   );
 };
 
 export default BookSearchForm;
-
-
