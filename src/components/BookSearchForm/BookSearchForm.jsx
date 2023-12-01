@@ -85,6 +85,31 @@ const BookSearchForm = ({
             borderRadius: '1%',
           }}
         >
+          <div className="search-type-container">
+            <FormControl fullWidth>
+              <InputLabel id="demo-simple-select-label"></InputLabel>
+              <Select
+                labelId="demo-simple-select-label"
+                id="demo-simple-select"
+                value={selectedSearchType}
+                label=""
+                onChange={_handleSearchTypeChange}
+                sx={{
+                  '& fieldset': {
+                    borderColor: '#000', 
+                    borderWidth: '2px', 
+                  },
+                  '& label': {
+                    color: '#000',}
+                }}
+              >
+                <MenuItem value=""></MenuItem>
+                <MenuItem value="title">Title</MenuItem>
+                <MenuItem value="author">Author</MenuItem>
+              </Select>
+            </FormControl>
+          </div>
+
           <Box
             component="form"
             sx={{
@@ -123,31 +148,7 @@ const BookSearchForm = ({
               startIcon={<SearchIcon />}
             />
           </div>
-          <div className="search-type-container">
-            <FormControl fullWidth>
-              <InputLabel id="demo-simple-select-label"></InputLabel>
-              <Select
-                labelId="demo-simple-select-label"
-                id="demo-simple-select"
-                value={selectedSearchType}
-                label=""
-                onChange={_handleSearchTypeChange}
-                sx={{
-                  '& fieldset': {
-                    borderColor: '#000', 
-                    borderWidth: '2px', 
-                  },
-                  '& label': {
-                    color: '#000',}
-                }}
-              >
-                <MenuItem value=""></MenuItem>
-                <MenuItem value="title">Title</MenuItem>
-                <MenuItem value="author">Author</MenuItem>
-              </Select>
-            </FormControl>
-          </div>
-
+          
           <div className="categories-container">
             <FormControl fullWidth>
               <InputLabel id="demo-simple-select-label" style={{ color: 'black' }}>Categories</InputLabel>
