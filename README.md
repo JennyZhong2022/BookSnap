@@ -92,6 +92,11 @@ _28 Nov - 30 Nov_
 
 _1 Dec_
 
+![signup](https://github.com/JennyZhong2022/BookSnap/assets/109143979/fce3a2ce-d324-4a68-a753-e1172b2032d3)
+![login](https://github.com/JennyZhong2022/BookSnap/assets/109143979/24ae7563-d28d-43b0-9558-d97e9c773494)
+![search](https://github.com/JennyZhong2022/BookSnap/assets/109143979/249d2e57-66af-48be-bd9e-4ad6a1e92972)
+![mylist](https://github.com/JennyZhong2022/BookSnap/assets/109143979/42ea7a2e-0541-4d9b-9e1d-8c39a27ff056)
+
 ## Next Steps
 - Implement OAuth Authentication
 - AbortController for a responsive search
