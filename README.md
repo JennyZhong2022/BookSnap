@@ -90,7 +90,7 @@ _28 Nov - 30 Nov_
 
 ### 4. Presentation & Review
 
-_1 Dec_
+
 
 ![signup](https://github.com/JennyZhong2022/BookSnap/assets/109143979/fce3a2ce-d324-4a68-a753-e1172b2032d3)
 ![login](https://github.com/JennyZhong2022/BookSnap/assets/109143979/24ae7563-d28d-43b0-9558-d97e9c773494)
